@@ -1,0 +1,12 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+footer{ 
+  /*  poner footer abajo */
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
