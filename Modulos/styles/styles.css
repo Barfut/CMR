@@ -25,9 +25,16 @@
   height: 370px;
   overflow: auto;
   }
-  .table-wrapper-scroll-y {
-  display: block;
+
+.my-custom-scrollbar-resumen {
+  position: relative;
+  height: 750px;
+  overflow: auto;
   }
+
+.table-wrapper-scroll-y {
+  display: block;
+}
 
 .dropdown-item:hover, .dropdown-item:active  {
   background-color:#256e383f ;

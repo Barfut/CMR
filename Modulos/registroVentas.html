@@ -33,391 +33,389 @@
     <div class="container-fluid">
         <div class="row">
 
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-success text-white sidebar collapse">
-                
-              <div class="position-sticky pt-3">
+          <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-success text-white sidebar collapse">
+              
+            <div class="position-sticky pt-3">
 
-                    <h4 class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white text-white-50">
-                      <span>Vendedor</span>
-                    </h4>
+                  <h4 class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white text-white-50">
+                    <span>Vendedor</span>
+                  </h4>
 
-                    <ul class="nav flex-column">
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Resumen de ventas <!-- Link detalles de venta --></a>
-                      </li>
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="./registroVentas.html"> Registro de venta <!-- Link Reumen orden / informacion de comprador / pasa a factura para cancelar / enviar factura -> entra venta al sistema--> </a>
-                      </li>
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Estado de venta </a>
-                      </li>
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Editar venta </a>
-                      </li>
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Clientes</a>
-                      </li>
-                    </ul>
-                                        
-                    
-                    <hr class="dropdown-divider">
-                    
-                    <h4 class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white text-white-50">
-                      <span>Administrador</span>
-                    </h4>
+                  <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                      <a class="nav-link text-reset dropdown-item" aria-current="page" href="./resumenVentas.html"> Resumen de ventas <!-- Link detalles de venta --></a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link text-reset dropdown-item" aria-current="page" href="./registroVentas.html"> Registro de venta <!-- Link Reumen orden / informacion de comprador / pasa a factura para cancelar / enviar factura -> entra venta al sistema--> </a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Estado de venta </a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Clientes</a>
+                    </li>
+                  </ul>
+                                      
+                  
+                  <hr class="dropdown-divider">
+                  
+                  <h4 class="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white text-white-50">
+                    <span>Administrador</span>
+                  </h4>
 
-                    <ul class="nav flex-column">
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Inventario <!-- Link detalles de venta --></a>
-                      </li>
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> ingresar productos <!-- Link Reumen orden / informacion de comprador / pasa a factura para cancelar / enviar factura -> entra venta al sistema--> </a>
-                      </li>
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Editar productos </a>
-                      </li>
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Vendedores </a>
-                      </li>
-                      <li class="nav-item px-3">
-                        <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Editar Vendedores </a>
-                      </li>
-                    </ul>
-                    
+                  <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                      <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Inventario <!-- Link detalles de venta --></a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> ingresar productos <!-- Link Reumen orden / informacion de comprador / pasa a factura para cancelar / enviar factura -> entra venta al sistema--> </a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Editar productos </a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Vendedores </a>
+                    </li>
+                    <li class="nav-item px-3">
+                      <a class="nav-link text-reset dropdown-item" aria-current="page" href="#"> Editar Vendedores </a>
+                    </li>
+                  </ul>
+                  
+              </div>
+          </nav>
+
+          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+            
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 "> 
+              <h1 class="h2 me-2">Registro de venta</h1>
+              <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group me-2">
+                  <button type="button" class="btn btn-close-white btn-sm"> </button> 
                 </div>
-            </nav>
+              </div>
+            </div>
+            
+              <div>
+                <form class="row gy-2 gx-3 align-items-center">
+                  <div class="row g-3">
+                    <div class="col-sm">
+                      <input type="number" class="form-control" placeholder="# C.C. cliente" aria-label="Documento">
+                    </div>
+                    <div class="col-sm-7">
+                      <input type="text" class="form-control" placeholder="Nombre cliente" aria-label="Nombre">
+                    </div>
+                    <div class="col-sm">
+                      <input type="date" class="form-control text-muted">
+                    </div>
+                  </div>
+                </form>
+              </div>
 
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-              <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 "> 
-                <h1 class="h2 me-2">Registro de venta</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                  <div class="btn-group me-2">
-                    <button type="button" class="btn btn-close-white btn-sm"> </button> 
+            <hr>
+            
+            <br>
+            <br>
+
+            <!-- Button trigger modal -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+              <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#agregarModal"> Agregar producto </button>
+            </div>
+
+            <br>
+
+            <!-- Modal -->
+            <div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="agregarModalLabel">Productos</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    
+                      <table class="table">
+                        <thead class="table-light"> 
+                            <tr>
+                              <th scope="col"> Productos Alimento Barf - Pollo - 250 gr</th>
+                              <th scope="col"> Cantidad</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+
+                          <tr>
+                            <td> 
+                              <select class="form-select form-select-sm" aria-label=".form-select-sm ">
+                                <option selected></option>
+                                <optgroup label = "Alimento Barf"> 
+                                  <option value="1"> Pollo - 250 gr</option>
+                                  <option value="2"> Pollo - 500 gr</option>
+                                  <option value="3"> Mixta - 250 gr</option>
+                                  <option value="4"> Mixta - 500 gr</option>
+                                  <option value="5"> Hueso carnoso - 250 gr</option>
+                                  <option value="6"> Hueso carnoso - 500 gr</option>
+                                </optgroup>          
+
+                                <optgroup label = "snaacks"> 
+                                  <option value="7"> Galletas de higado X 5 und</option>
+                                  <option value="8"> Cabano de res x 10 und</option>
+                                  <option value="9"> Traquea de res</option>
+                                  <option value="10"> Hueso de res</option>
+                                </optgroup>
+                              </select>
+                          
+                            </td>
+                            <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm opacity-50" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success btn-sm">Agregar</button>
                   </div>
                 </div>
               </div>
-              
-                <div>
-                  <form class="row gy-2 gx-3 align-items-center">
-                    <div class="row g-3">
-                      <div class="col-sm">
-                        <input type="number" class="form-control" placeholder="# C.C. cliente" aria-label="Documento">
-                      </div>
-                      <div class="col-sm-7">
-                        <input type="text" class="form-control" placeholder="Nombre cliente" aria-label="Nombre">
-                      </div>
-                      <div class="col-sm">
-                        <input type="date" class="form-control">
-                      </div>
-                    </div>
-                  </form>
-                </div>
+            </div>
 
-              <hr>
-              
-              <br>
-              <br>
+            
 
-              <!-- Button trigger modal -->
-              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"> Agregar producto </button>
-              </div>
-
-              <br>
-
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Productos</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      
-                        <table class="table">
-                          <thead>
-                              <tr>
-                                <th scope="col"> Productos Alimento Barf - Pollo - 250 gr</th>
-                                <th scope="col"> Cantidad</th>
-                              </tr>
-                          </thead>
-
-                          <tbody>
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-
-                            <tr>
-                              <td> 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm ">
-                                  <option selected></option>
-                                  <optgroup label = "Alimento Barf"> 
-                                    <option value="1"> Pollo - 250 gr</option>
-                                    <option value="2"> Pollo - 500 gr</option>
-                                    <option value="3"> Mixta - 250 gr</option>
-                                    <option value="4"> Mixta - 500 gr</option>
-                                    <option value="5"> Hueso carnoso - 250 gr</option>
-                                    <option value="6"> Hueso carnoso - 500 gr</option>
-                                  </optgroup>          
-
-                                  <optgroup label = "snaacks"> 
-                                    <option value="7"> Galletas de higado X 5 und</option>
-                                    <option value="8"> Cabano de res x 10 und</option>
-                                    <option value="9"> Traquea de res</option>
-                                    <option value="10"> Hueso de res</option>
-                                  </optgroup>
-                                </select>
-                            
-                              </td>
-                              <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
-                            </tr>
-                          </tbody>
-                        </table>
-
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary btn-sm opacity-50" data-bs-dismiss="modal">Cancelar</button>
-                      <button type="button" class="btn btn-success btn-sm">Agregar</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              
-
-              
-              <div class="table-wrapper-scroll-y my-custom-scrollbar"> 
-              <table class="table ">
-                <thead>
+            
+            <div class="table-wrapper-scroll-y my-custom-scrollbar"> 
+              <table class="table">
+                <thead class="table-light sticky-top">
                   <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Producto</th>
-                    <th scope="col">Precio unitario</th>
-                    <th scope="col">Cantidad</th>
-                    <th scope="col">Total</th>
+                    <th style="width: 5%" scope="col">#</th>
+                    <th style="width: 40%" scope="col">Producto</th>
+                    <th style="width: 20%" scope="col">Precio unitario</th>
+                    <th style="width: 15%" scope="col">Cantidad</th>
+                    <th style="width: 20%" scope="col">Total</th>
                   </tr>
                 </thead>
               
@@ -492,7 +490,7 @@
                     <td><input type="number" min="1" class="form-control" placeholder="" value="0" style="width: 70px;"></td>
                     <td>$</td>
                   </tr>
-                 
+                
                 </tbody>
               </table>
             </div>
@@ -510,14 +508,14 @@
             <br>
 
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal1"> Registrar</button> <!--Al guardar debe limpiar formulario-->
+              <button type="reset" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#registrarModal"> Registrar</button> <!--Al guardar debe limpiar formulario-->
             </div>
 
-            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+            <div class="modal fade" id="registrarModal" tabindex="-1" aria-labelledby="registrarModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel1"></h5>
+                      <h5 class="modal-title" id="registrarModalLabel"></h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
@@ -526,11 +524,9 @@
                   </div>
                 </div>
               </div>
-
-
-                      
+          </main>          
         </div>
-    </div>
+      </div>
 
             
 
