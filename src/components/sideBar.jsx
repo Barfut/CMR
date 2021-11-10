@@ -8,9 +8,7 @@ const SideBar = () => {
                 
               <div className="position-sticky pt-3">
 
-                    <h4 className="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white text-white-50">
-                      <span>Vendedor</span>
-                    </h4>
+                    <TitulosSideBar titulo = 'Vendedor'/>
 
                     <ul className="nav flex-column">
                       <li className="nav-item px-3">
@@ -30,9 +28,7 @@ const SideBar = () => {
                     
                     <hr className="dropdown-divider" />
                     
-                    <h4 className="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white text-white-50">
-                      <span>Administrador</span>
-                    </h4>
+                    <TitulosSideBar titulo = 'Administrador'/>
 
                     <ul className="nav flex-column">
                       <li className="nav-item px-3">
@@ -43,14 +39,23 @@ const SideBar = () => {
                       </li>                    
                       <li className="nav-item px-3">
                         <a className="nav-link text-reset dropdown-item" aria-current="page" href="./administrarUsuarios.html"> Administrar Vendedores </a>
-                      </li>                   
+                      </li>                 depurar 
                     </ul>
                     
                 </div>
-            </nav>
-
-     
+            </nav>   
     );
+}
+
+const TitulosSideBar = ({titulo}) => {
+  return (
+
+    <h4 className="d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-white text-white-50">
+      <span>{titulo}</span>
+    </h4>
+
+  );
+
 }
 
 export default SideBar
