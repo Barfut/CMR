@@ -1,38 +1,49 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'Comfortaa', cursive;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+
+.navbar .navbar-toggler {
+  top: .25rem;
+  right: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100; /* Behind the navbar */
+  padding: 48px 0 0; /* Height of navbar */
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 370px;
+  overflow: auto;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.my-custom-scrollbar-resumen {
+  position: relative;
+  height: 750px;
+  overflow: auto;
   }
-  to {
-    transform: rotate(360deg);
-  }
+
+.table-wrapper-scroll-y {
+  display: block;
+}
+
+.dropdown-item:hover, .dropdown-item:active  {
+  background-color:#256e383f ;
+}
+
+footer{ 
+  /*  poner footer abajo */
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }
