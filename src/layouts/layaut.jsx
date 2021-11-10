@@ -17,7 +17,7 @@ function Layaut ({children}) {
         
                     <SideBar />
 
-                    <main>{children}</main>
+                    <div>{children}</div>
                 </div>
 
             </div>

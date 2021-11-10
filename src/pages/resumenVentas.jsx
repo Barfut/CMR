@@ -67,6 +67,8 @@ function ResumenVentas () {
               </table>
             </div>
 
+            
+
         </main>
 
         </Layaut>
