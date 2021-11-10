@@ -1,3 +1,11 @@
-import './styles/App.css';
+import 'styles/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import navbar from '../components/navbar';
+import Navbar from 'components/navbar';
+
+function Main () {
+    return (
+        <Navbar />
+    );
+}
+
+export default Main

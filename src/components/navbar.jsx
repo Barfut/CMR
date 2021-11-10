@@ -1,6 +1,6 @@
-import logo from './media/Barfut_H-Blanco2.png';
+import logo from 'media/Barfut_H-Blanco2.png';
 
-function navbar (){
+function Navbar (){
     return (
 
         <header class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0">
@@ -17,4 +17,4 @@ function navbar (){
     );
 }
 
-export default navbar
+export default Navbar

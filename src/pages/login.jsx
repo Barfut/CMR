@@ -1,9 +1,9 @@
-import logo from './media/Barfut_H-Blanco.png';
-import './styles/App.css';
+import logo from 'media/Barfut_H-Blanco.png';
+import 'styles/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import './styles/App.css';
 
-function login() {
+
+function Login() {
   return ( /* arreglar las a de link y autenticacion con google*/
   
     <div className="text-center">
@@ -65,4 +65,4 @@ function login() {
   );
 }
 
-export default login;
+export default Login;
