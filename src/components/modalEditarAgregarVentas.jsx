@@ -1,3 +1,5 @@
+import BotonCancelar from "./botonCancelar";
+import BotonVerdeModal from "./botonVerdeModal";
 import DatosVendedor from "./datosVendedor"
 import TablaProductosEditarAgregar from "./tablaProductosEditarAgregar"
 
@@ -23,8 +25,8 @@ const ModalEditarAgregarVentas = () => {
                 </div>
 
                 <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary btn-sm opacity-50" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" className="btn btn-success btn-sm">Guardar</button>
+                    <BotonCancelar />
+                    <BotonVerdeModal texto = "Guardar" />
                 </div>
             </div>
         </div>

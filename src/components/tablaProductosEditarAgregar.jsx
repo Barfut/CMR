@@ -7,8 +7,8 @@ const TablaProductosEditarAgregar = () => {
             
             <thead className="table-light">
                 <tr>
-                    <th scope="col"> Productos</th>
-                    <th scope="col"> Cantidad</th>
+                    <th width="80%" scope="col"> Productos </th>
+                    <th width="20%" scope="col"> Cantidad</th>
                 </tr>
             </thead>
 

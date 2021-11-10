@@ -1,5 +1,5 @@
 
-const BotonBuscar = ({titulo}) => {
+const BotonBuscar = () => {
     return (
   
         <div className="me-2">

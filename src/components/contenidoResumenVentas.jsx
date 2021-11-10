@@ -1,6 +1,6 @@
 import ModalEditarAgregarVentas from "./modalEditarAgregarVentas";
 
-const ContenidoResumenVentas = ({titulo}) => {
+const ContenidoResumenVentas = () => {
     return (
     
     <tr>
@@ -11,12 +11,7 @@ const ContenidoResumenVentas = ({titulo}) => {
         <span>$</span>
         55555
         </td>
-        <td>
-            
-
-            <ModalEditarAgregarVentas />
-
-        </td>
+        <td> <ModalEditarAgregarVentas /> </td>
     </tr>
 
     );
