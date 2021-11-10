@@ -2,13 +2,11 @@ import Login from './pages/login';
 import Principal from './pages/principal';
 import ResumenVentas from './pages/resumenVentas';
 import RegistroVentas from './pages/registroVentas';
- 
+import Inventario from './pages/inventario';
+import AdministrarUsuarios from './pages/administrarUsuarios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-
 import './styles/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-
-
 
 function App() {
   return ( 
@@ -22,6 +20,8 @@ function App() {
           <Route exact path= "/principal" element ={<Principal/>} /> 
           <Route exact path= "/resumenVentas" element ={<ResumenVentas/>} /> 
           <Route exact path= "/registroVentas" element ={<RegistroVentas/>} /> 
+          <Route exact path= "/inventario" element ={<Inventario/>} /> 
+          <Route exact path= "/administrarUsuarios" element ={<AdministrarUsuarios/>} />
             
         </Routes>
       </BrowserRouter>

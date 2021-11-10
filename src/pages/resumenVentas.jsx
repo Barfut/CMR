@@ -1,7 +1,10 @@
 import '../styles/App.css';
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
 import Layaut from '../layouts/layaut';
 import BotonBuscar from '../components/botonBuscar';
+import ContenidoResumenVentas from '../components/contenidoResumenVentas';
 import { Link } from 'react-router-dom';
 
 
@@ -40,13 +43,38 @@ function ResumenVentas () {
                     <th width="7%" scope="col">Accion</th>
                   </tr>
                 </thead>
+                <tbody role="rowgroup">
+
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  <ContenidoResumenVentas />
+                  
+
+                </tbody>
               </table>
             </div>
 
         </main>
 
         </Layaut>
-           
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+                    crossorigin="anonymous">
+        </script>
     </div>     
 
    );

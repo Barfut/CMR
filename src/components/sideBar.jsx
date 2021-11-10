@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import '../styles/App.css';
 
 const SideBar = () => {
     return (
@@ -18,10 +19,10 @@ const SideBar = () => {
                         <Link to='/registroVentas' className="nav-link text-reset dropdown-item" aria-current="page" > Registro de venta </Link>
                       </li>
                       <li className="nav-item px-3">
-                        <a className="nav-link disabled dropdown-item" aria-current="page" href="#"> Estado de venta </a>
+                        <a className="nav-link disabled dropdown-item" aria-current="page" > Estado de venta </a>
                       </li>
                       <li className="nav-item px-3">
-                        <a className="nav-link disabled dropdown-item" aria-current="page" href="#"> Clientes</a>
+                        <a className="nav-link disabled dropdown-item" aria-current="page" > Clientes</a>
                       </li>
                     </ul>
                                         
@@ -32,13 +33,13 @@ const SideBar = () => {
 
                     <ul className="nav flex-column">
                       <li className="nav-item px-3">
-                        <a className="nav-link text-reset dropdown-item" aria-current="page" href="./inventario.html"> Inventario </a>
+                       <Link to='/inventario' className="nav-link text-reset dropdown-item" aria-current="page"> Inventario </Link>
                       </li>
                       <li className="nav-item px-3">
-                        <a className="nav-link disabled dropdown-item" aria-current="page" href="#"> Ingresar productos </a>
+                        <a className="nav-link disabled dropdown-item" aria-current="page"> Ingresar productos </a>
                       </li>                    
                       <li className="nav-item px-3">
-                        <a className="nav-link text-reset dropdown-item" aria-current="page" href="./administrarUsuarios.html"> Administrar Vendedores </a>
+                        <Link to='/administrarUsuarios' className="nav-link text-reset dropdown-item" aria-current="page"> Administrar Vendedores </Link>
                       </li>                  
                     </ul>
                     

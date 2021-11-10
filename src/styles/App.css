@@ -37,7 +37,7 @@
 }
 
 .dropdown-item:hover, .dropdown-item:active  {
-  background-color:#256e383f ;
+  background-color:#256e383f  !important;
 }
 
 footer{ 
