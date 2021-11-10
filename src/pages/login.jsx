@@ -1,6 +1,7 @@
 import logo from 'media/Barfut_H-Blanco.png';
 import 'styles/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { Link } from 'react-router-dom';
 
 
 function Login() {
@@ -35,7 +36,7 @@ function Login() {
               <br />
 
               <div className="mb-3 mb-0 text-center">
-                <a className="btn btn-success" href="./mainPage.html">Iniciar sesión</a>
+                <Link to='/principal' className="btn btn-success">Iniciar sesión</Link>
               </div>
 
               <br />
