@@ -1,4 +1,4 @@
-import logo from 'media/Barfut_H-Blanco2.png';
+import logo from '../media/Barfut_H-Blanco2.png';
 import { Link } from 'react-router-dom';
 
 const Header = () => {

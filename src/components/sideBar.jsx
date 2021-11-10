@@ -1,4 +1,4 @@
-import { Children } from "react";
+import { Link } from 'react-router-dom';
 
 const SideBar = () => {
     return (
@@ -12,10 +12,10 @@ const SideBar = () => {
 
                     <ul className="nav flex-column">
                       <li className="nav-item px-3">
-                        <a className="nav-link text-reset dropdown-item" aria-current="page" href="./resumenVentas.html"> Resumen de ventas </a>
+                        <Link to='/resumenVentas' className="nav-link text-reset dropdown-item" aria-current="page"> Resumen de ventas </Link>
                       </li>
                       <li className="nav-item px-3">
-                        <a className="nav-link text-reset dropdown-item" aria-current="page" href="./registroVentas.html"> Registro de venta </a>
+                        <Link to='/registroVentas' className="nav-link text-reset dropdown-item" aria-current="page" > Registro de venta </Link>
                       </li>
                       <li className="nav-item px-3">
                         <a className="nav-link disabled dropdown-item" aria-current="page" href="#"> Estado de venta </a>
@@ -39,7 +39,7 @@ const SideBar = () => {
                       </li>                    
                       <li className="nav-item px-3">
                         <a className="nav-link text-reset dropdown-item" aria-current="page" href="./administrarUsuarios.html"> Administrar Vendedores </a>
-                      </li>                 depurar 
+                      </li>                  
                     </ul>
                     
                 </div>

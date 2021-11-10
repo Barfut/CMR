@@ -1,7 +1,7 @@
-import 'styles/App.css';
+import '../styles/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import Header from 'components/header';
-import SideBar from 'components/sideBar';
+import Header from '../components/header';
+import SideBar from '../components/sideBar';
 
 
 

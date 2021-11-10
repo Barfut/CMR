@@ -4,7 +4,7 @@ import Layaut from '../layouts/layaut';
 
 
 
-function Principal () {
+function RegistroVentas () {
     return (
 
     <div>
@@ -20,4 +20,4 @@ function Principal () {
    );
 }
 
-export default Principal
+export default RegistroVentas

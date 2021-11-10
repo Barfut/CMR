@@ -1,5 +1,5 @@
-import logo from 'media/Barfut_H-Blanco.png';
-import 'styles/App.css';
+import logo from '../media/Barfut_H-Blanco.png';
+import '../styles/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Link } from 'react-router-dom';
 
