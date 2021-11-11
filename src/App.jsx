@@ -6,6 +6,8 @@ import Inventario from './pages/inventario';
 import AdministrarUsuarios from './pages/administrarUsuarios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import './styles/App.css';
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {

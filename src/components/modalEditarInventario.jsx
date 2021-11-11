@@ -1,6 +1,5 @@
 import BotonCancelar from "./botonCancelar";
 import BotonVerdeModal from "./botonVerdeModal";
-import TablaProductosEditarAgregar from "./tablaProductosEditarAgregar"
 
 const ModalEditarInventario = () => {
     return (

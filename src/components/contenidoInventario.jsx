@@ -1,4 +1,3 @@
-import ModalEditarAgregarVentas from "./modalEditarAgregarVentas";
 import ModalEditarInventario from "./modalEditarInventario";
 
 const ContenidoInventario = () => {

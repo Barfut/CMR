@@ -39,7 +39,7 @@ function AdministrarUsuarios () {
                         </tr>
                         </thead>
 
-                        <tbody role="rowgroup">
+                        <tbody>
 
                             <ContenidoRegistroUsuarios />
                             <ContenidoRegistroUsuarios />

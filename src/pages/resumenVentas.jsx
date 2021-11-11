@@ -43,7 +43,8 @@ function ResumenVentas () {
                     <th width="7%" scope="col">Accion</th>
                   </tr>
                 </thead>
-                <tbody role="rowgroup">
+                
+                <tbody>
 
                   <ContenidoResumenVentas />
                   <ContenidoResumenVentas />
