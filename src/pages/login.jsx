@@ -29,6 +29,7 @@ function Login() {
                   <input type="text" className="form-control" id="username" placeholder="Ingrese su usuario" required/>
                   <label for="username">Usuario</label>
                 </div>
+
                 <div className="form-floating mb-3">   
                   <input type="password" className="form-control" id="password" placeholder="contraseña" required/>
                   <label for="password">Contraseña</label> 
@@ -36,9 +37,9 @@ function Login() {
 
                 <br />
 
-                <div className="mb-3 mb-0 text-center">
-                  <Link to='/principal' type= 'text' className="btn btn-success">Iniciar sesión</Link>
-                </div>
+                  <div className="mb-3 mb-0 text-center">
+                    <button type= 'submit' className="btn btn-success">Iniciar sesión</button>
+                  </div>
                 </form>
 
               <br />
