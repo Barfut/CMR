@@ -24,20 +24,22 @@ function Login() {
                 <h4 className="text-dark-50 fs-1 text-center mt-0 fw-bold">Bienvenido</h4>
                 <p className="text-muted mb-3">Ingrese su usuario y contraseña</p>
               </div>
-              <div className="form-floating mb-3">
-                <input type="text" className="form-control" id="username" placeholder="Ingrese su usuario" />
-                <label for="username">Usuario</label>
-              </div>
-              <div className="form-floating mb-3">   
-                <input type="password" className="form-control" id="password" placeholder="contraseña" />
-                <label for="password">Contraseña</label> 
-              </div>
+              <form>
+                <div className="form-floating mb-3">
+                  <input type="text" className="form-control" id="username" placeholder="Ingrese su usuario" required/>
+                  <label for="username">Usuario</label>
+                </div>
+                <div className="form-floating mb-3">   
+                  <input type="password" className="form-control" id="password" placeholder="contraseña" required/>
+                  <label for="password">Contraseña</label> 
+                </div>
 
-              <br />
+                <br />
 
-              <div className="mb-3 mb-0 text-center">
-                <Link to='/principal' className="btn btn-success">Iniciar sesión</Link>
-              </div>
+                <div className="mb-3 mb-0 text-center">
+                  <Link to='/principal' type= 'text' className="btn btn-success">Iniciar sesión</Link>
+                </div>
+                </form>
 
               <br />
               <hr />
