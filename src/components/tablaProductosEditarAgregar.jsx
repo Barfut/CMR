@@ -3,7 +3,7 @@ import ContenidoTablaEditarAgregarVentas from "./contenidoTablaEditarAgregarVent
 const TablaProductosEditarAgregar = () => {
     return (
 
-        <table className="table">
+        <table className="table table-hover">
             
             <thead className="table-light">
                 <tr>

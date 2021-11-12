@@ -33,7 +33,7 @@ function ResumenVentas () {
             <br />
 
             <div className="table-wrapper-scroll-y my-custom-scrollbar-resumen"> 
-              <table className="table">
+              <table className="table table-hover">
                 <thead className="table-light sticky-top">
                   <tr>
                     <th width="20%" scope="col">ID</th>

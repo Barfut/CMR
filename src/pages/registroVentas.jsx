@@ -36,7 +36,7 @@ function RegistroVentas () {
               <br />
 
               <div className="table-wrapper-scroll-y my-custom-scrollbar"> 
-                <table className="table">
+                <table className="table table-hover">
                   <thead className="table-light sticky-top">
                     <tr>
                       <th width="5%" scope="col">#</th>

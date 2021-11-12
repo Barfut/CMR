@@ -4,7 +4,6 @@
   font-family: 'Comfortaa', cursive;
 }
 
-
 .navbar .navbar-toggler {
   top: .25rem;
   right: 1rem;
@@ -39,6 +38,7 @@
 .dropdown-item:hover, .dropdown-item:active  {
   background-color:#256e383f  !important;
 }
+
 
 footer{ 
   /*  poner footer abajo */
