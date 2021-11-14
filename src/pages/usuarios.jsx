@@ -8,21 +8,21 @@ import axios from 'axios';
 
 
 
-function Inventario () {
+function Usuarios () {
     const [mostrarTabla, setMostrarTabla] = useState(true);
-    const [inventario, setInventatio] = useState([]);
-    const [textoBoton, setTextoBoton] = useState('Crear un nuevo producto');
+    const [usuarios, setUsuarios] = useState([]);
+    const [textoBoton, setTextoBoton] = useState('Crear un nuevo usuario');
     const [colorBoton, setColorBoton] = useState('indigo');
     const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
     
     
   
-    const obtenerInventatio = async () => {
-      const options = { method: 'GET', url: 'http://localhost:5000/inventario/' };
+    const obtenerUsuarios = async () => {
+      const options = { method: 'GET', url: 'http://localhost:5000/usuarios/' };
       await axios
         .request(options)
         .then(function (response) {
-          setInventatio(response.data);
+          setUsuarios(response.data);
         })
         .catch(function (error) {
           console.error(error);
@@ -33,12 +33,12 @@ function Inventario () {
     useEffect(() => {
       console.log('consulta', ejecutarConsulta);
       if (ejecutarConsulta) {
-        obtenerInventatio();
+        obtenerUsuarios();
       }
     }, [ejecutarConsulta]);
   
     useEffect(() => {
-      //obtener lista de productos desde el backend
+      //obtener lista de usuarios desde el backend
       if (mostrarTabla) {
         setEjecutarConsulta(true);
       }
@@ -48,10 +48,10 @@ function Inventario () {
   
     useEffect(() => {
       if (mostrarTabla) {
-        setTextoBoton('Nuevo producto');
+        setTextoBoton('Nuevo usuario');
         setColorBoton('info');
       } else {
-        setTextoBoton('inventario');
+        setTextoBoton('Usuarios');
         setColorBoton('success');
       }
     }, [mostrarTabla]);
@@ -74,12 +74,12 @@ function Inventario () {
   
         </div>
         {mostrarTabla ? (
-          <TablaProductos listaProductos={inventario} setEjecutarConsulta={setEjecutarConsulta}/>
+          <TablaUsuario listaUsuario={usuarios} setEjecutarConsulta={setEjecutarConsulta}/>
         ) : (
-          <FormularioIngresarProducto
+          <FormularioIngresarUsuarios
             setMostrarTabla={setMostrarTabla}
-            listaProductos={inventario}
-            setInventatio={setInventatio}
+            listaUsuario={usuarios}
+            setUsuarios={setUsuarios}
           />
         )}
         <ToastContainer position='bottom-center' autoClose={2000} />
@@ -88,23 +88,23 @@ function Inventario () {
     );
   };
   
-  const TablaProductos = ({listaProductos, setEjecutarConsulta}) => {
+  const TablaUsuario = ({listaUsuario, setEjecutarConsulta}) => {
   
     const [busqueda, setBusqueda] = useState('');
-    const [productoFiltradas, setProductoFiltradas] = useState(listaProductos);
+    const [usuariosFiltrados, setUsuariosFiltrados] = useState(listaUsuario);
   
     useEffect(() => {
-      setProductoFiltradas(
-        listaProductos.filter((elemento) => {
+      setUsuariosFiltrados(
+        listaUsuario.filter((elemento) => {
           return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
         })
       );
-    }, [busqueda, listaProductos]);
+    }, [busqueda, listaUsuario]);
   
     return (   
       <>
       <div className='d-flex justify-content-start align-items-center'>
-        <h1 className=' fw-bold d-md-flex justify-content-start pe-5 pt-3 pb-2 mb-3' >Inventario</h1>
+        <h1 className=' fw-bold d-md-flex justify-content-start pe-5 pt-3 pb-2 mb-3' >Usuarios</h1>
         <input
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
@@ -117,19 +117,21 @@ function Inventario () {
           <table className="table table-hover table-bordered">
               <thead className="table-light sticky-top ">
                 <tr>
-                    <th width="14%">ID</th>
-                    <th width="45%">Producto</th>
-                    <th width="20%" className="text-center">Valor unitario</th>                   
-                    <th width="15%" className="text-center">Estado</th>
+                    <th width="5%">ID</th>
+                    <th width="23%">Correo electrónico</th>
+                    <th width="20%">Apellido</th>
+                    <th width="20%">Nombre</th>
+                    <th width="13%" className="text-center">Roll</th>                   
+                    <th width="13%" className="text-center">Estado</th>
                     <th width="6%" className="text-center">Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                {productoFiltradas.map((inventario) => {
+                {usuariosFiltrados.map((usuarios) => {
                     return (
-                  <FilaVenta 
+                  <FilaUsuario 
                     key = {nanoid()} 
-                    inventario={inventario}
+                    usuarios={usuarios}
                     setEjecutarConsulta = {setEjecutarConsulta}
                     />
                     );
@@ -142,44 +144,46 @@ function Inventario () {
   };
   
   
-  const FilaVenta = ({inventario, setEjecutarConsulta}) => {
+    const FilaUsuario = ({usuarios, setEjecutarConsulta}) => {
     const [edit, setEdit] = useState(false)
     const [openDialog, setOpenDialog] = useState(false);
-    const [infoNuevoProducto, setInfoNuevoProducto] = useState({
-      producto: inventario.producto,    
-      valorUnitario: inventario.valorUnitario,
-      estado: inventario.estado,
+    const [infoNuevoUsuario, setInfoNuevoUsuario] = useState({
+      email: usuarios.email,    
+      apellido: usuarios.apellido,
+      nombre: usuarios.nombre,
+      roll: usuarios.roll,
+      estado: usuarios.estado,
     });
   
-    const actualizarProductos = async () => {
-      console.log(infoNuevoProducto);
+    const actualizarUsuarios = async () => {
+      console.log(infoNuevoUsuario);
       //enviar la info al backend
      
       const options = {
         method: 'PATCH',
-        url: `http://localhost:5000/inventario/${inventario._id}/`,
+        url: `http://localhost:5000/usuarios/${usuarios._id}/`,
         headers: { 'Content-Type': 'application/json' },
-        data: { ...infoNuevoProducto},
+        data: { ...infoNuevoUsuario},
       };
   
       await axios
         .request(options)
         .then(function (response) {
           console.log(response.data);
-          toast.success('Producto modificado con éxito');
+          toast.success('usuario modificado con éxito');
           setEdit(false);
           setEjecutarConsulta(true);
         })
         .catch(function (error) {
-          toast.error('Error modificando el producto');
+          toast.error('Error modificando el usuario');
           console.error(error);
         });
     };
   
-    const eliminarProducto = async () => {
+    const eliminarUsuarios = async () => {
       const options = {
         method: 'DELETE',
-        url: `http://localhost:5000/inventario/${inventario._id}/`,
+        url: `http://localhost:5000/usuarios/${usuarios._id}/`,
         headers: { 'Content-Type': 'application/json' },
       };
   
@@ -187,12 +191,12 @@ function Inventario () {
         .request(options)
         .then(function (response) {
           console.log(response.data);
-          toast.success('producto eliminado con éxito');
+          toast.success('usuario eliminado con éxito');
           setEjecutarConsulta(true);
         })
         .catch(function (error) {
           console.error(error);
-          toast.error('Error eliminando el producto');
+          toast.error('Error eliminando el usuario');
         });
       setOpenDialog(false);
     };
@@ -200,38 +204,58 @@ function Inventario () {
     return (
   
       <tr >
-        <td>{inventario._id.slice(18)}</td>
+        <td>{usuarios._id.slice(18)}</td>
         {edit ? (
           <>
             <td>
                 <input className='form-control m-0 p-0' 
-                type ='text' 
-                value={infoNuevoProducto.producto}
-                onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, producto: e.target.value })}
+                type ='email' 
+                value={infoNuevoUsuario.email}
+                onChange={(e) => setInfoNuevoUsuario({ ...infoNuevoUsuario, email: e.target.value })}
                 />
             </td>          
             <td>
-              <input min={1000} max={50000} className='form-control text-center m-0 p-0'
-              value={infoNuevoProducto.valorUnitario}
-              onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, valorUnitario: e.target.value })}
-              />
-            </td>
+                <input className='form-control m-0 p-0' 
+                type ='text' 
+                value={infoNuevoUsuario.apellido}
+                onChange={(e) => setInfoNuevoUsuario({ ...infoNuevoUsuario, apellido: e.target.value })}
+                />
+            </td> 
+            <td>
+                <input className='form-control m-0 p-0' 
+                type ='text' 
+                value={infoNuevoUsuario.nombre}
+                onChange={(e) => setInfoNuevoUsuario({ ...infoNuevoUsuario, nombre: e.target.value })}
+                />
+            </td> 
             <td>               
                 <select className='form-select m-0 p-0' 
-                    value={infoNuevoProducto.estado}
-                    onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, estado: e.target.value })}
+                    value={infoNuevoUsuario.roll}
+                    onChange={(e) => setInfoNuevoUsuario({ ...infoNuevoUsuario, roll: e.target.value })}
                     >        
-                    <option>Disponible</option>
-                    <option>No Disponible</option> 
+                    <option>Administrador</option>
+                    <option>Vendedor</option> 
+                </select>                  
+            </td> 
+            <td>               
+                <select className='form-select m-0 p-0' 
+                    value={infoNuevoUsuario.estado}
+                    onChange={(e) => setInfoNuevoUsuario({ ...infoNuevoUsuario, estado: e.target.value })}
+                    >
+                    <option>Pendiente</option>        
+                    <option>Autorizado</option>
+                    <option>No Autorizado</option> 
                 </select>                  
             </td>  
           </>
   
         ): (
           <>           
-          <td>{inventario.producto}</td>
-          <td className="text-center">{`  $ ${inventario.valorUnitario}`}</td>        
-          <td className="text-center">{inventario.estado}</td>
+          <td>{usuarios.email}</td>
+          <td>{usuarios.apellido}</td>
+          <td>{usuarios.nombre}</td>
+          <td className="text-center">{usuarios.roll}</td>
+          <td className="text-center">{usuarios.estado}</td>
           </>
         )}
            
@@ -241,7 +265,7 @@ function Inventario () {
                 <>
                  <Tooltip title='Confirmar' arrow>
                   <i 
-                  onClick={()=> actualizarProductos()}
+                  onClick={()=> actualizarUsuarios()}
                   className='fas fa-check btn-success shadow-none btn-sm '
                   />
                 </Tooltip>
@@ -274,11 +298,11 @@ function Inventario () {
             <Dialog open={openDialog}> 
                 <div>
                   <h4 className='text-center m-3 p-3' >
-                    ¿Está seguro de eliminar el producto?
+                    ¿Está seguro de eliminar el usuario?
                   </h4>
                   <div className='btn-group d-flex justify-content-end'>
                     <button
-                      onClick={() => eliminarProducto()}
+                      onClick={() => eliminarUsuarios()}
                       className=' btn btn-outline-danger shadow-none btn-sm m-1 p-1 rounded-pill'
                     >
                       Sí
@@ -298,26 +322,28 @@ function Inventario () {
     );
   }
   
-  const FormularioIngresarProducto = ({ setMostrarTabla, listaProductos, setInventatio }) => {
+  const FormularioIngresarUsuarios = ({ setMostrarTabla, listaUsuario, setUsuarios }) => {
     const form = useRef(null);
   
     const submitForm = async (e) => {
       e.preventDefault();
       const fd = new FormData(form.current);
   
-      const nuevoProducto = {};
+      const nuevoUsuario = {};
       fd.forEach((value, key) => {
-        nuevoProducto[key] = value;
+        nuevoUsuario[key] = value;
       });
   
       const options = {
         method: 'POST',
-        url: 'http://localhost:5000/inventario/',
+        url: 'http://localhost:5000/usuarios/',
         headers: { 'Content-Type': 'application/json' },
         data: { 
-          producto: nuevoProducto.producto,
-          valorUnitario: nuevoProducto.valorUnitario,
-          estado: nuevoProducto.estado,
+          email: nuevoUsuario.email,
+          apellido: nuevoUsuario.apellido,
+          nombre: nuevoUsuario.nombre,
+          roll: nuevoUsuario.roll,       
+          estado: nuevoUsuario.estado,
          },
       };
     
@@ -325,11 +351,11 @@ function Inventario () {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        toast.success('Producto agregado con éxito');
+        toast.success('usuario agregado con éxito');
       })
       .catch(function (error) {
         console.error(error);
-        toast.error('Error creando un producto');
+        toast.error('Error creando un usuario');
       });
   
     setMostrarTabla(true);
@@ -338,7 +364,7 @@ function Inventario () {
     return (
   
       <>
-        <h2 className='fw-bold d-md-flex justify-content-start pt-3 pb-2 mb-3'>Ingresar nuevo producto</h2>
+        <h2 className='fw-bold d-md-flex justify-content-start pt-3 pb-2 mb-3'>Ingresar nuevo usuario</h2>
   
           <div>
               <form ref={form} onSubmit={submitForm} className='row justify-content-md-center'>
@@ -349,41 +375,64 @@ function Inventario () {
                       
                       <h4 className='d-md-flex justify-content-start pt-3 pb-2 mb-3'> </h4>
                       
-                        <label className='align-middle d-flex w-100 py-3' htmlFor='producto' >
-                        Producto
+                        <label className='align-middle d-flex w-100 py-3' htmlFor='email' >
+                        Correo electrónico
                         <input
-                            name='producto'
+                            name='email'
+                            className=' text-muted form-control ms-4 w-75'
+                            type='email'
+                            placeholder='...'
+                            required
+                        />
+                        </label> 
+
+                        <label className='align-middle d-flex w-100 py-3 pe-3' htmlFor='apellido' >
+                        <div className='pe-2 me-5'>Apellido</div>                        
+                        <input
+                            name='apellido'
                             className=' text-muted form-control ms-5 w-75'
                             type='text'
                             placeholder='...'
                             required
                         />
-                        </label>                                     
-  
-                        <label className='align-middle d-flex w-100 py-3' htmlFor='valorUnitario'>
-                        Und valor
-                        <input
-                           name='valorUnitario'
-                           className='text-muted form-control ms-5 w-75'
-                           type='number'
-                           min={500}
-                           max={5000}
-                           placeholder='...'
-                           required
-                        />
-                        </label>
+                        </label>   
 
-                        <label className=' align-middle d-flex w-100 py-3' htmlFor='estado'>
-                        <div className='pe-3 me-2'> Estado</div>
+                        <label className='align-middle d-flex w-100 py-3' htmlFor='nombre' >
+                        <div className='pe-2 me-5'>Nombre</div>
+                        <input
+                            name='nombre'
+                            className=' text-muted form-control ms-5 w-75'
+                            type='text'
+                            placeholder='...'
+                            required
+                        />
+                        </label>                                    
+                         
+                        <label className=' align-middle d-flex w-100 py-3' htmlFor='roll'>
+                        <div className='pe-5 me-5'> Roll</div>
                         <select
                             className='text-muted form-select ms-5 w-75'
-                            name='estado'
+                            name='roll'
                             required
                             defaultValue={0}
                         >
                             <option disabled value={0}> Seleccione una opción</option>                    
-                            <option>Disponible</option>
-                            <option>No disponible</option>                                              
+                            <option>Administrador</option>
+                            <option>Vendedor</option>                                              
+                        </select>                  
+                        </label>
+
+                        <label className=' align-middle d-flex w-100 py-3' htmlFor='estado'>
+                        <div className='pe-3 me-5'> Estado</div>
+                        <select
+                            className='text-muted form-select ms-5 w-75'
+                            name='estado'
+                            required
+                            defaultValue={2}
+                        >
+                            <option>Pendiente</option>        
+                            <option>Autorizado</option>
+                            <option>No Autorizado</option>
                         </select>                  
                         </label>
                       
@@ -392,7 +441,7 @@ function Inventario () {
                           type='submit'
                           className='btn btn-success btn-sm'
                           >
-                          Guardar nuevo producto
+                          Guardar nuevo usuario
                           </button>
                       </div>
                   </div>
@@ -401,5 +450,5 @@ function Inventario () {
       </>
     );
   };
-  
-export default Inventario
+
+export default Usuarios

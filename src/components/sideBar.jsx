@@ -38,7 +38,7 @@ const SideBar = () => {
                       </li>
 
                       <li className="nav-item px-3">
-                        <Link to='/administrarUsuarios' className="nav-link text-reset dropdown-item" aria-current="page"> Administrar Vendedores </Link>
+                        <Link to='/Usuarios' className="nav-link text-reset dropdown-item" aria-current="page"> Usuarios </Link>
                       </li>                  
                     </ul>
                     

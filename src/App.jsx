@@ -2,7 +2,7 @@ import Login from './pages/login';
 import Principal from './pages/principal';
 import Ventas from './pages/ventas';
 import Inventario from './pages/inventario';
-import AdministrarUsuarios from './pages/administrarUsuarios';
+import Usuarios from './pages/usuarios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
@@ -23,7 +23,7 @@ function App() {
             <Route  path= "/principal" element ={<Principal/>} /> 
             <Route  path= "/ventas" element ={<Ventas/>} /> 
             <Route  path= "/inventario" element ={<Inventario/>} /> 
-            <Route  path= "/administrarUsuarios" element ={<AdministrarUsuarios/>} />        
+            <Route  path= "/usuarios" element ={<Usuarios/>} />        
           </Routes>
       
     </BrowserRouter>
