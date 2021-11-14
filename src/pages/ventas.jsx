@@ -116,13 +116,14 @@ const TablaVentas = ({listaVentas, setEjecutarConsulta}) => {
             <thead className="table-light sticky-top ">
               <tr>
                   <th width="4%">ID</th>
-                  <th width="13%">Fecha</th>
-                  <th width="10%">C.C. cliente</th>
-                  <th width="15%">Cliente</th>
-                  <th width="23%">Producto</th>
-                  <th width="9%" className="text-center">Cantidad</th>
-                  <th width="10%" className="text-center">Valor unitario</th>
-                  <th width="10%" className="text-center">Total</th>
+                  <th width="10%">Fecha</th>
+                  <th width="9%">C.C. cliente</th>
+                  <th width="13%">Cliente</th>
+                  <th width="21%">Producto</th>
+                  <th width="7%" className="text-center">Cantidad</th>
+                  <th width="9%" className="text-center">Valor unitario</th>
+                  <th width="8%" className="text-center">Total</th>
+                  <th width="12%" className="text-center">Vendedor</th>
                   <th width="6%" className="text-center">Acciones</th>
               </tr>
             </thead>
@@ -154,6 +155,7 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
     producto: ventas.producto,
     cantidad: ventas.cantidad,
     valorUnitario: ventas.valorUnitario,
+    vendedor: ventas.vendedor,
   });
 
   const actualizarVentas = async () => {
@@ -258,6 +260,16 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
             onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, valorUnitario: e.target.value })}
             />
           </td>
+          <td className="text-center">{`  $ ${parseInt(ventas.cantidad) * parseInt(ventas.valorUnitario)} `} </td>
+          <td>               
+              <select className='form-select m-0 p-0' 
+                  value={infoNuevaVenta.vendedor}
+                  onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, vendedor: e.target.value })}
+                  >        
+                  <option>Administrador</option>
+                  <option>Vendedor</option> 
+              </select>                  
+          </td> 
         </>
 
       ): (
@@ -267,11 +279,12 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
         <td>{ventas.nombre}</td>
         <td>{ventas.producto}</td>
         <td className="text-center">{ventas.cantidad}</td>
-        <td className="text-center">{`  $ ${ventas.valorUnitario}`}</td>        
+        <td className="text-center">{`  $ ${ventas.valorUnitario}`}</td>
+        <td className="text-center">{`  $ ${parseInt(ventas.cantidad) * parseInt(ventas.valorUnitario)} `} </td>      
+        <td className="text-center">{ventas.vendedor}</td>  
         </>
       )}
 
-        <td className="text-center">{`  $ ${parseInt(ventas.cantidad) * parseInt(ventas.valorUnitario)} `} </td>
         <td>
           <div className= 'd-flex justify-content-evenly'>
             {edit ? (
@@ -358,6 +371,7 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
         producto: nuevaVenta.producto,
         cantidad: nuevaVenta.cantidad,
         valorUnitario: nuevaVenta.valorUnitario,
+        vendedor: nuevaVenta.vendedor
        },
     };
   
@@ -382,8 +396,25 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
 
         <div>
             <form ref={form} onSubmit={submitForm} className='row justify-content-md-center'>
+              
+              <div>
+                <label className=' align-middle d-flex w-100 py-3' htmlFor='vendedor'>
+                    Vendedor
+                    <select
+                        className='text-muted form-select ms-5 w-25'
+                        name='vendedor'
+                        required
+                        defaultValue={0}
+                     >
+                        <option disabled value={0}> Seleccione una opción</option>                    
+                        <option>Alimento Barf / Pollo - 250 gr</option>                        
+                    </select>                  
+                    </label>
+                </div>
+              
+                <hr/>
 
-                <h4 className='d-md-flex justify-content-start pt-3 pb-2 mb-3'>Informacion del cliente</h4>
+                <h4 className='d-md-flex justify-content-start fw-bold pt-3 pb-2 mb-3'>Informacion del cliente</h4>                
                 
                 <div className='d-inline-flex align-self-center align-middle w-100'>                  
                     
@@ -423,7 +454,7 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
                 
                 <div className=' container'>
                     
-                    <h4 className='d-md-flex justify-content-start pt-3 pb-2 mb-3'>Informacion del producto</h4>
+                    <h4 className='d-md-flex justify-content-start fw-bold pt-3 pb-2 mb-3'>Informacion del producto</h4>
                     
                     <label className=' align-middle d-flex w-100 py-3' htmlFor='producto'>
                     Producto
