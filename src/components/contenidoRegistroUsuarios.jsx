@@ -7,16 +7,16 @@ const ContenidoRegistroUsuarios = () => {
             <td>
                 <select class="form-select form-select-sm " aria-label=".form-select-sm ">
                     <option selected></option>                                    
-                    <option value="1"> Administrador</option>
-                    <option value="2"> Usuario</option>                            
+                    <option value="Administrador"> Administrador</option>
+                    <option value="Usuario"> Usuario</option>                            
                 </select>
             </td>
             <td>
                 <select class="form-select form-select-sm" aria-label=".form-select-sm ">
                     <option selected></option>                                    
-                    <option value="1"> Pendiente</option>
-                    <option value="2"> Autorizado</option>                            
-                    <option value="3"> No autorizado</option>                            
+                    <option value="Pendiente" selected> Pendiente</option>
+                    <option value="Autorizado"> Autorizado</option>                            
+                    <option value="No autorizado"> No autorizado</option>                            
                 </select>
             </td>
             <td> 

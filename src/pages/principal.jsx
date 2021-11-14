@@ -10,11 +10,12 @@ function Principal () {
     <div>
 
         <Layaut>
+
             <main >
 
             </main>
         </Layaut>
-           
+
     </div>     
 
    );
