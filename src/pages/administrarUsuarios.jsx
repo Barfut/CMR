@@ -1,8 +1,6 @@
 import '../styles/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import Layaut from '../layouts/layaut';
-import BotonBuscar from '../components/botonBuscar';
-import ContenidoRegistroUsuarios from '../components/contenidoRegistroUsuarios';
 
 
 function AdministrarUsuarios () {
@@ -22,7 +20,7 @@ function AdministrarUsuarios () {
                 </div> 
 
                 <div>
-                    <BotonBuscar />
+                    
                 </div>
 
                 <br />
@@ -40,12 +38,6 @@ function AdministrarUsuarios () {
                         </thead>
 
                         <tbody>
-
-                            <ContenidoRegistroUsuarios />
-                            <ContenidoRegistroUsuarios />
-                            <ContenidoRegistroUsuarios />
-                            <ContenidoRegistroUsuarios />
-                            <ContenidoRegistroUsuarios />
 
                         </tbody>
                     </table>

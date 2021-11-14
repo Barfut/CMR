@@ -9,7 +9,7 @@ import axios from 'axios';
 const Ventas = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true);
   const [ventas, setVentas] = useState([]);
-  const [textoBoton, setTextoBoton] = useState('Crear Nuevo Vehículo');
+  const [textoBoton, setTextoBoton] = useState('Crear nuevo venta');
   const [colorBoton, setColorBoton] = useState('indigo');
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
   
@@ -36,7 +36,7 @@ const Ventas = () => {
   }, [ejecutarConsulta]);
 
   useEffect(() => {
-    //obtener lista de vehículos desde el backend
+    //obtener lista de ventas desde el backend
     if (mostrarTabla) {
       setEjecutarConsulta(true);
     }
@@ -162,9 +162,9 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
    
     const options = {
       method: 'PATCH',
-      url: 'http://localhost:5000/ventas/editar/',
+      url: `http://localhost:5000/ventas/${ventas._id}/`,
       headers: { 'Content-Type': 'application/json' },
-      data: { ...infoNuevaVenta, id: ventas._id },
+      data: { ...infoNuevaVenta},
     };
 
     await axios
@@ -184,9 +184,8 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
   const eliminarVenta = async () => {
     const options = {
       method: 'DELETE',
-      url: 'http://localhost:5000/ventas/eliminar/',
+      url: `http://localhost:5000/ventas/${ventas._id}/`,
       headers: { 'Content-Type': 'application/json' },
-      data: { id: ventas._id },
     };
 
     await axios
@@ -354,7 +353,7 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
 
     const options = {
       method: 'POST',
-      url: 'http://localhost:5000/ventas/nueva',
+      url: 'http://localhost:5000/ventas/',
       headers: { 'Content-Type': 'application/json' },
       data: { 
         fecha: nuevaVenta.fecha,
