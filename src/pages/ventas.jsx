@@ -6,42 +6,6 @@ import Layaut from '../layouts/layaut';
 import { Dialog, Tooltip } from '@mui/material';
 import axios from 'axios';
 
-const ventasBackend = [
-  {
-    fecha: '2021-11-07',
-    cedula: 10192156785,
-    nombre: 'Juan Gomez',
-    producto: 'Alimento Barf / Mixta - 500 gr',
-    cantidad: 35,
-    valorUnitario: 2600,
-  },
-  {
-    fecha: '2021-11-07',
-    cedula: 10192156785,
-    nombre: 'Juan Gomez',
-    producto: 'Alimento Barf / Mixta - 500 gr',
-    cantidad: 35,
-    valorUnitario: 2600,
-  },
-  {
-    fecha: '2021-11-07',
-    cedula: 10192156785,
-    nombre: 'Juan Gomez',
-    producto: 'Alimento Barf / Mixta - 500 gr',
-    cantidad: 35,
-    valorUnitario: 2600,
-  },
-  {
-    fecha: '2021-11-07',
-    cedula: 10192156785,
-    nombre: 'Juan Gomez',
-    producto: 'Alimento Barf / Mixta - 500 gr',
-    cantidad: 35,
-    valorUnitario: 2600,
-  },
-];
-
-
 const Ventas = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true);
   const [ventas, setVentas] = useState([]);
@@ -52,7 +16,7 @@ const Ventas = () => {
   
 
   const obtenerVentas = async () => {
-    const options = { method: 'GET', url: 'https://vast-waters-45728.herokuapp.com/vehicle/' };
+    const options = { method: 'GET', url: 'http://localhost:5000/ventas/' };
     await axios
       .request(options)
       .then(function (response) {
@@ -142,7 +106,7 @@ const TablaVentas = ({listaVentas, setEjecutarConsulta}) => {
       <input
         value={busqueda}
         onChange={(e) => setBusqueda(e.target.value)}
-        placeholder='Buscar'
+        placeholder='Buscar...'
         className='text-muted form-control w-25 h-50'
       />
     </div>
@@ -151,14 +115,15 @@ const TablaVentas = ({listaVentas, setEjecutarConsulta}) => {
         <table className="table table-hover table-bordered">
             <thead className="table-light sticky-top ">
               <tr>
-                  <th width="15%">Fecha</th>
+                  <th width="4%">ID</th>
+                  <th width="13%">Fecha</th>
                   <th width="10%">C.C. cliente</th>
                   <th width="15%">Cliente</th>
                   <th width="23%">Producto</th>
-                  <th width="10%" className="text-center">Cantidad</th>
+                  <th width="9%" className="text-center">Cantidad</th>
                   <th width="10%" className="text-center">Valor unitario</th>
                   <th width="10%" className="text-center">Total</th>
-                  <th width="7%" className="text-center">Acciones</th>
+                  <th width="6%" className="text-center">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -181,7 +146,7 @@ const TablaVentas = ({listaVentas, setEjecutarConsulta}) => {
 
 const FilaVenta = ({ventas, setEjecutarConsulta}) => {
   const [edit, setEdit] = useState(false)
- 
+  const [openDialog, setOpenDialog] = useState(false);
   const [infoNuevaVenta, setInfoNuevaVenta] = useState({
     fecha: ventas.fecha,
     cedula: ventas.cedula,
@@ -197,7 +162,7 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
    
     const options = {
       method: 'PATCH',
-      url: 'https://vast-waters-45728.herokuapp.com/vehicle/update/',
+      url: 'http://localhost:5000/ventas/editar/',
       headers: { 'Content-Type': 'application/json' },
       data: { ...infoNuevaVenta, id: ventas._id },
     };
@@ -219,7 +184,7 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
   const eliminarVenta = async () => {
     const options = {
       method: 'DELETE',
-      url: 'https://vast-waters-45728.herokuapp.com/vehicle/delete/',
+      url: 'http://localhost:5000/ventas/eliminar/',
       headers: { 'Content-Type': 'application/json' },
       data: { id: ventas._id },
     };
@@ -235,11 +200,13 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
         console.error(error);
         toast.error('Error eliminando la venta');
       });
+    setOpenDialog(false);
   };
 
   return (
 
     <tr >
+      <td>{ventas._id.slice(18)}</td>
       {edit ? (
         <>
           <td>
@@ -299,7 +266,7 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
         </>
 
       ): (
-        <>
+        <> 
         <td>{ventas.fecha}</td>
         <td>{ventas.cedula}</td>
         <td>{ventas.nombre}</td>
@@ -313,26 +280,61 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
         <td>
           <div className= 'd-flex justify-content-evenly'>
             {edit ? (
+              <>
                <Tooltip title='Confirmar' arrow>
                 <i 
                 onClick={()=> actualizarVentas()}
                 className='fas fa-check btn-success shadow-none btn-sm '
                 />
               </Tooltip>
+              <Tooltip title='Cancelar' arrow>
+                <i
+                  onClick={() => setEdit(!edit)}
+                  className='fas fa-ban btn-info shadow-none btn-sm'
+                />
+              </Tooltip>
+            </>
+              
             ):(
+              <>
               <Tooltip title='Editar' arrow>
                 <i onClick={()=> setEdit(!edit)} 
                 className='fas fa-edit btn-outline-warning btn-sm'
                 />
               </Tooltip>
+               <Tooltip title='Eliminar' arrow>
+               <i 
+                 onClick={() => setOpenDialog(true)}
+                 className='fas fa-trash-alt btn-outline-danger btn-sm'
+               />
+             </Tooltip>
+             </>
             )}
-            <Tooltip title='Eliminar' arrow>
-              <i 
-                onClick={() => eliminarVenta()}
-                className='fas fa-trash-alt btn-outline-danger btn-sm'
-              />
-            </Tooltip>
+           
           </div>
+
+          <Dialog open={openDialog}> 
+              <div>
+                <h4 className='text-center m-3 p-3' /* Cuadrar Estilos*/>
+                  ¿Está seguro de eliminar la venta?
+                </h4>
+                <div className='btn-group d-flex justify-content-end'>
+                  <button
+                    onClick={() => eliminarVenta()}
+                    className=' btn btn-outline-danger shadow-none btn-sm m-1 p-1 rounded-pill'
+                  >
+                    Sí
+                  </button>
+                  <button
+                    onClick={() => setOpenDialog(false)}
+                    className='btn btn-success shadow-none btn-sm m-1 p-1 rounded-pill'
+                  >
+                    No
+                  </button>
+                </div>
+              </div>
+            </Dialog>
+
         </td>
     </tr>
   );
@@ -352,7 +354,7 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
 
     const options = {
       method: 'POST',
-      url: 'https://vast-waters-45728.herokuapp.com/vehicle/create',
+      url: 'http://localhost:5000/ventas/nueva',
       headers: { 'Content-Type': 'application/json' },
       data: { 
         fecha: nuevaVenta.fecha,
