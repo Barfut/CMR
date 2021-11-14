@@ -10,7 +10,7 @@ import axios from 'axios';
 
 function Inventario () {
     const [mostrarTabla, setMostrarTabla] = useState(true);
-    const [inventatio, setInventatio] = useState([]);
+    const [inventario, setInventatio] = useState([]);
     const [textoBoton, setTextoBoton] = useState('Crear Nuevo producto');
     const [colorBoton, setColorBoton] = useState('indigo');
     const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
@@ -18,7 +18,7 @@ function Inventario () {
     
   
     const obtenerInventatio = async () => {
-      const options = { method: 'GET', url: 'http://localhost:5000/inventatio/' };
+      const options = { method: 'GET', url: 'http://localhost:5000/inventario/' };
       await axios
         .request(options)
         .then(function (response) {
@@ -51,7 +51,7 @@ function Inventario () {
         setTextoBoton('Agregar nuevo producto');
         setColorBoton('info');
       } else {
-        setTextoBoton('inventatio');
+        setTextoBoton('inventario');
         setColorBoton('success');
       }
     }, [mostrarTabla]);
@@ -74,11 +74,11 @@ function Inventario () {
   
         </div>
         {mostrarTabla ? (
-          <TablaProductos listaProductos={inventatio} setEjecutarConsulta={setEjecutarConsulta}/>
+          <TablaProductos listaProductos={inventario} setEjecutarConsulta={setEjecutarConsulta}/>
         ) : (
           <FormularioIngresarProducto
             setMostrarTabla={setMostrarTabla}
-            listaProductos={inventatio}
+            listaProductos={inventario}
             setInventatio={setInventatio}
           />
         )}
@@ -91,10 +91,10 @@ function Inventario () {
   const TablaProductos = ({listaProductos, setEjecutarConsulta}) => {
   
     const [busqueda, setBusqueda] = useState('');
-    const [ventasFiltradas, setVentasFiltradas] = useState(listaProductos);
+    const [productoFiltradas, setProductoFiltradas] = useState(listaProductos);
   
     useEffect(() => {
-      setVentasFiltradas(
+      setProductoFiltradas(
         listaProductos.filter((elemento) => {
           return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
         })
@@ -104,7 +104,7 @@ function Inventario () {
     return (   
       <>
       <div className='d-flex justify-content-start align-items-center'>
-        <h1 className=' fw-bold d-md-flex justify-content-start pe-5 pt-3 pb-2 mb-3' >Inventatio</h1>
+        <h1 className=' fw-bold d-md-flex justify-content-start pe-5 pt-3 pb-2 mb-3' >Inventario</h1>
         <input
           value={busqueda}
           onChange={(e) => setBusqueda(e.target.value)}
@@ -117,20 +117,19 @@ function Inventario () {
           <table className="table table-hover table-bordered">
               <thead className="table-light sticky-top ">
                 <tr>
-                    <th width="4%">ID</th>
-                    <th width="23%">Producto</th>
-                    <th width="9%" className="text-center">Cantidad</th>
-                    <th width="10%" className="text-center">Valor unitario</th>
-                    <th width="10%" className="text-center">Total</th>
+                    <th width="14%">ID</th>
+                    <th width="45%">Producto</th>
+                    <th width="20%" className="text-center">Valor unitario</th>                   
+                    <th width="15%">Estado</th>
                     <th width="6%" className="text-center">Acciones</th>
                 </tr>
               </thead>
               <tbody>
-                {ventasFiltradas.map((inventatio) => {
+                {productoFiltradas.map((inventario) => {
                     return (
                   <FilaVenta 
                     key = {nanoid()} 
-                    inventatio={inventatio}
+                    inventario={inventario}
                     setEjecutarConsulta = {setEjecutarConsulta}
                     />
                     );
@@ -143,44 +142,44 @@ function Inventario () {
   };
   
   
-  const FilaVenta = ({inventatio, setEjecutarConsulta}) => {
+  const FilaVenta = ({inventario, setEjecutarConsulta}) => {
     const [edit, setEdit] = useState(false)
     const [openDialog, setOpenDialog] = useState(false);
-    const [infoNuevaVenta, setInfoNuevaVenta] = useState({
-      producto: inventatio.producto,
-      cantidad: inventatio.cantidad,
-      valorUnitario: inventatio.valorUnitario,
+    const [infoNuevoProducto, setInfoNuevoProducto] = useState({
+      producto: inventario.producto,    
+      valorUnitario: inventario.valorUnitario,
+      estado: inventario.estado,
     });
   
-    const actualizarVentas = async () => {
-      console.log(infoNuevaVenta);
+    const actualizarProductos = async () => {
+      console.log(infoNuevoProducto);
       //enviar la info al backend
      
       const options = {
         method: 'PATCH',
-        url: `http://localhost:5000/inventatio/${inventatio._id}/`,
+        url: `http://localhost:5000/inventario/${inventario._id}/`,
         headers: { 'Content-Type': 'application/json' },
-        data: { ...infoNuevaVenta},
+        data: { ...infoNuevoProducto},
       };
   
       await axios
         .request(options)
         .then(function (response) {
           console.log(response.data);
-          toast.success('venta modificado con éxito');
+          toast.success('Producto modificado con éxito');
           setEdit(false);
           setEjecutarConsulta(true);
         })
         .catch(function (error) {
-          toast.error('Error modificando la venta');
+          toast.error('Error modificando el producto');
           console.error(error);
         });
     };
   
-    const eliminarVenta = async () => {
+    const eliminarProducto = async () => {
       const options = {
         method: 'DELETE',
-        url: `http://localhost:5000/inventatio/${inventatio._id}/`,
+        url: `http://localhost:5000/inventario/${inventario._id}/`,
         headers: { 'Content-Type': 'application/json' },
       };
   
@@ -188,12 +187,12 @@ function Inventario () {
         .request(options)
         .then(function (response) {
           console.log(response.data);
-          toast.success('venta eliminado con éxito');
+          toast.success('producto eliminado con éxito');
           setEjecutarConsulta(true);
         })
         .catch(function (error) {
           console.error(error);
-          toast.error('Error eliminando la venta');
+          toast.error('Error eliminando el producto');
         });
       setOpenDialog(false);
     };
@@ -201,60 +200,48 @@ function Inventario () {
     return (
   
       <tr >
-        <td>{inventatio._id.slice(18)}</td>
+        <td>{inventario._id.slice(18)}</td>
         {edit ? (
           <>
             <td>
-              <select className='form-select m-0 p-0' 
-              value={infoNuevaVenta.producto}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, producto: e.target.value })}
-              >
-                  <optgroup label = "Alimento humedo"> 
-                      <option>Alimento Barf / Pollo - 250 gr</option>
-                      <option>Alimento Barf / Pollo - 500 gr</option>
-                      <option>Alimento Barf / Mixta - 250 gr</option>
-                      <option>Alimento Barf / Mixta - 500 gr</option>
-                      <option>Alimento Barf / Hueso carnoso - 250 gr</option>
-                      <option>Alimento Barf / Hueso carnoso - 500 gr</option>
-                  </optgroup> 
-                  <optgroup label = "Snacks"> 
-                      <option>Snacks / Galletas de higado X 5 und</option>
-                      <option>Snacks / Cabano de res x 10 und</option>
-                      <option>Snacks / Traquea de res</option>
-                      <option>Snacks / Hueso de res</option>
-                  </optgroup>
-              </select>     
-            </td>
+                <input className='form-control m-0 p-0' 
+                type ='text' 
+                value={infoNuevoProducto.producto}
+                onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, producto: e.target.value })}
+                />
+            </td>          
             <td>
-              <input min={1} max={250} className='form-control text-center m-0 p-0' 
-              value={infoNuevaVenta.cantidad}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, cantidad: e.target.value })}
+              <input min={1000} max={50000} className='form-control text-center m-0 p-0'
+              value={infoNuevoProducto.valorUnitario}
+              onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, valorUnitario: e.target.value })}
               />
             </td>
-            <td>
-              <input min={500} max={5000} className='form-control text-center m-0 p-0'
-              value={infoNuevaVenta.valorUnitario}
-              onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, valorUnitario: e.target.value })}
-              />
-            </td>
+            <td>               
+                <select className='form-select m-0 p-0' 
+                    value={infoNuevoProducto.estado}
+                    onChange={(e) => setInfoNuevoProducto({ ...infoNuevoProducto, estado: e.target.value })}
+                    >        
+                    <option>Disponible</option>
+                    <option>No Disponible</option> 
+                </select>                  
+            </td>  
           </>
   
         ): (
           <>           
-          <td>{inventatio.producto}</td>
-          <td className="text-center">{inventatio.cantidad}</td>
-          <td className="text-center">{`  $ ${inventatio.valorUnitario}`}</td>        
+          <td>{inventario.producto}</td>
+          <td className="text-center">{`  $ ${inventario.valorUnitario}`}</td>        
+          <td>{inventario.estado}</td>
           </>
         )}
-  
-          <td className="text-center">{`  $ ${parseInt(inventatio.cantidad) * parseInt(inventatio.valorUnitario)} `} </td>
+           
           <td>
             <div className= 'd-flex justify-content-evenly'>
               {edit ? (
                 <>
                  <Tooltip title='Confirmar' arrow>
                   <i 
-                  onClick={()=> actualizarVentas()}
+                  onClick={()=> actualizarProductos()}
                   className='fas fa-check btn-success shadow-none btn-sm '
                   />
                 </Tooltip>
@@ -286,12 +273,12 @@ function Inventario () {
   
             <Dialog open={openDialog}> 
                 <div>
-                  <h4 className='text-center m-3 p-3' /* Cuadrar Estilos*/>
-                    ¿Está seguro de eliminar la venta?
+                  <h4 className='text-center m-3 p-3' >
+                    ¿Está seguro de eliminar el producto?
                   </h4>
                   <div className='btn-group d-flex justify-content-end'>
                     <button
-                      onClick={() => eliminarVenta()}
+                      onClick={() => eliminarProducto()}
                       className=' btn btn-outline-danger shadow-none btn-sm m-1 p-1 rounded-pill'
                     >
                       Sí
@@ -318,19 +305,19 @@ function Inventario () {
       e.preventDefault();
       const fd = new FormData(form.current);
   
-      const nuevaVenta = {};
+      const nuevoProducto = {};
       fd.forEach((value, key) => {
-        nuevaVenta[key] = value;
+        nuevoProducto[key] = value;
       });
   
       const options = {
         method: 'POST',
-        url: 'http://localhost:5000/inventatio/',
+        url: 'http://localhost:5000/inventario/',
         headers: { 'Content-Type': 'application/json' },
         data: { 
-          producto: nuevaVenta.producto,
-          cantidad: nuevaVenta.cantidad,
-          valorUnitario: nuevaVenta.valorUnitario,
+          producto: nuevoProducto.producto,
+          valorUnitario: nuevoProducto.valorUnitario,
+          estado: nuevoProducto.estado,
          },
       };
     
@@ -338,11 +325,11 @@ function Inventario () {
       .request(options)
       .then(function (response) {
         console.log(response.data);
-        toast.success('Venta agregado con éxito');
+        toast.success('Producto agregado con éxito');
       })
       .catch(function (error) {
         console.error(error);
-        toast.error('Error creando una venta');
+        toast.error('Error creando un producto');
       });
   
     setMostrarTabla(true);
@@ -351,7 +338,7 @@ function Inventario () {
     return (
   
       <>
-        <h2 className='fw-bold d-md-flex justify-content-start pt-3 pb-2 mb-3'>Ingresar nueva venta</h2>
+        <h2 className='fw-bold d-md-flex justify-content-start pt-3 pb-2 mb-3'>Ingresar nuevo producto</h2>
   
           <div>
               <form ref={form} onSubmit={submitForm} className='row justify-content-md-center'>
@@ -360,67 +347,52 @@ function Inventario () {
                   
                   <div className=' container'>
                       
-                      <h4 className='d-md-flex justify-content-start pt-3 pb-2 mb-3'>Informacion del producto</h4>
+                      <h4 className='d-md-flex justify-content-start pt-3 pb-2 mb-3'> </h4>
                       
-                      <label className=' align-middle d-flex w-100 py-3' htmlFor='producto'>
-                      Producto
-                      <select
-                          className='text-muted form-select ms-5 w-75'
-                          name='producto'
-                          required
-                          defaultValue={0}
-                       >
-                          <option disabled value={0}> Seleccione una opción</option>
-                          <optgroup label = "Alimento humedo"> 
-                              <option>Alimento Barf / Pollo - 250 gr</option>
-                              <option>Alimento Barf / Pollo - 500 gr</option>
-                              <option>Alimento Barf / Mixta - 250 gr</option>
-                              <option>Alimento Barf / Mixta - 500 gr</option>
-                              <option>Alimento Barf / Hueso carnoso - 250 gr</option>
-                              <option>Alimento Barf / Hueso carnoso - 500 gr</option>
-                          </optgroup> 
-                          <optgroup label = "Snacks"> 
-                              <option>Snacks / Galletas de higado X 5 und</option>
-                              <option>Snacks / Cabano de res x 10 und</option>
-                              <option>Snacks / Traquea de res</option>
-                              <option>Snacks / Hueso de res</option>
-                          </optgroup>
-                      </select>                  
-                      </label>
-                  
+                        <label className='align-middle d-flex w-100 py-3' htmlFor='producto' >
+                        Producto
+                        <input
+                            name='producto'
+                            className=' text-muted form-control ms-5 w-75'
+                            type='text'
+                            placeholder='...'
+                            required
+                        />
+                        </label>                                     
   
-                      <label className='align-middle d-flex w-100 py-3' htmlFor='cantidad'>
-                      Cantidad
-                      <input
-                          name='cantidad'
-                          className='text-muted form-control ms-5 w-75'
-                          type='number'
-                          min={1}
-                          max={250}
-                          placeholder='...'
-                          required
-                      />
-                      </label>
-  
-                      <label className='align-middle d-flex w-100 py-3' htmlFor='valorUnitario'>
-                      Und valor
-                      <input
-                          name='valorUnitario'
-                          className='text-muted form-control ms-5 w-75'
-                          type='number'
-                          min={500}
-                          max={5000}
-                          placeholder='...'
-                          required
-                      />
-                      </label>
+                        <label className='align-middle d-flex w-100 py-3' htmlFor='valorUnitario'>
+                        Und valor
+                        <input
+                           name='valorUnitario'
+                           className='text-muted form-control ms-5 w-75'
+                           type='number'
+                           min={500}
+                           max={5000}
+                           placeholder='...'
+                           required
+                        />
+                        </label>
+
+                        <label className=' align-middle d-flex w-100 py-3' htmlFor='estado'>
+                        Estado
+                        <select
+                            className='text-muted form-select ms-5 w-75'
+                            name='estado'
+                            required
+                            defaultValue={0}
+                        >
+                            <option disabled value={0}> Seleccione una opción</option>                    
+                            <option>Disponible</option>
+                            <option>No disponible</option>                                              
+                        </select>                  
+                        </label>
                       
                       <div className='container py-5'> 
                           <button
                           type='submit'
                           className='btn btn-success btn-sm'
                           >
-                          Guardar venta
+                          Guardar nuevo producto
                           </button>
                       </div>
                   </div>

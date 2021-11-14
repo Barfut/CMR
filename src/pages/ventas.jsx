@@ -233,21 +233,17 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
             <select className='form-select m-0 p-0' 
             value={infoNuevaVenta.producto}
             onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, producto: e.target.value })}
-            >
-                <optgroup label = "Alimento humedo"> 
-                    <option>Alimento Barf / Pollo - 250 gr</option>
-                    <option>Alimento Barf / Pollo - 500 gr</option>
-                    <option>Alimento Barf / Mixta - 250 gr</option>
-                    <option>Alimento Barf / Mixta - 500 gr</option>
-                    <option>Alimento Barf / Hueso carnoso - 250 gr</option>
-                    <option>Alimento Barf / Hueso carnoso - 500 gr</option>
-                </optgroup> 
-                <optgroup label = "Snacks"> 
-                    <option>Snacks / Galletas de higado X 5 und</option>
-                    <option>Snacks / Cabano de res x 10 und</option>
-                    <option>Snacks / Traquea de res</option>
-                    <option>Snacks / Hueso de res</option>
-                </optgroup>
+            >        
+              <option>Alimento Barf / Pollo - 250 gr</option>
+              <option>Alimento Barf / Pollo - 500 gr</option>
+              <option>Alimento Barf / Mixta - 250 gr</option>
+              <option>Alimento Barf / Mixta - 500 gr</option>
+              <option>Alimento Barf / Hueso carnoso - 250 gr</option>
+              <option>Alimento Barf / Hueso carnoso - 500 gr</option>
+              <option>Snacks / Galletas de higado X 5 und</option>
+              <option>Snacks / Cabano de res x 10 und</option>
+              <option>Snacks / Traquea de res</option>
+              <option>Snacks / Hueso de res</option>         
             </select>     
           </td>
           <td>
@@ -257,7 +253,7 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
             />
           </td>
           <td>
-            <input min={500} max={5000} className='form-control text-center m-0 p-0'
+            <input min={1000} max={50000} className='form-control text-center m-0 p-0'
             value={infoNuevaVenta.valorUnitario}
             onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, valorUnitario: e.target.value })}
             />
@@ -314,7 +310,7 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
 
           <Dialog open={openDialog}> 
               <div>
-                <h4 className='text-center m-3 p-3' /* Cuadrar Estilos*/>
+                <h4 className='text-center m-3 p-3' >
                   ¿Está seguro de eliminar la venta?
                 </h4>
                 <div className='btn-group d-flex justify-content-end'>
@@ -437,21 +433,17 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
                         required
                         defaultValue={0}
                      >
-                        <option disabled value={0}> Seleccione una opción</option>
-                        <optgroup label = "Alimento humedo"> 
-                            <option>Alimento Barf / Pollo - 250 gr</option>
-                            <option>Alimento Barf / Pollo - 500 gr</option>
-                            <option>Alimento Barf / Mixta - 250 gr</option>
-                            <option>Alimento Barf / Mixta - 500 gr</option>
-                            <option>Alimento Barf / Hueso carnoso - 250 gr</option>
-                            <option>Alimento Barf / Hueso carnoso - 500 gr</option>
-                        </optgroup> 
-                        <optgroup label = "Snacks"> 
-                            <option>Snacks / Galletas de higado X 5 und</option>
-                            <option>Snacks / Cabano de res x 10 und</option>
-                            <option>Snacks / Traquea de res</option>
-                            <option>Snacks / Hueso de res</option>
-                        </optgroup>
+                        <option disabled value={0}> Seleccione una opción</option>                    
+                        <option>Alimento Barf / Pollo - 250 gr</option>
+                        <option>Alimento Barf / Pollo - 500 gr</option>
+                        <option>Alimento Barf / Mixta - 250 gr</option>
+                        <option>Alimento Barf / Mixta - 500 gr</option>
+                        <option>Alimento Barf / Hueso carnoso - 250 gr</option>
+                        <option>Alimento Barf / Hueso carnoso - 500 gr</option>                        
+                        <option>Snacks / Galletas de higado X 5 und</option>
+                        <option>Snacks / Cabano de res x 10 und</option>
+                        <option>Snacks / Traquea de res</option>
+                        <option>Snacks / Hueso de res</option>                      
                     </select>                  
                     </label>
                 
@@ -475,8 +467,8 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
                         name='valorUnitario'
                         className='text-muted form-control ms-5 w-75'
                         type='number'
-                        min={500}
-                        max={5000}
+                        min={1000}
+                        max={50000}
                         placeholder='...'
                         required
                     />
