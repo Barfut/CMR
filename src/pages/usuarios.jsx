@@ -325,13 +325,13 @@ function Usuarios () {
           nombre: nuevoUsuario.nombre,
           roll: nuevoUsuario.roll,       
           estado: nuevoUsuario.estado,
-       },(response)=> {
-         console.log(response.data);
-         toast.success('Usuario agregado con éxito')
-       },(error) => {
-         console.error(error);
-         toast.error('Error creando un nuevo usuario')
-       }
+        },(response)=> {
+          console.log(response.data);
+          toast.success('Usuario agregado con éxito')
+        },(error) => {
+          console.error(error);
+          toast.error('Error creando un nuevo usuario')
+        }
       );    
       
       setMostrarTabla(true);
