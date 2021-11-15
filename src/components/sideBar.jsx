@@ -12,18 +12,15 @@ const SideBar = () => {
                     <TitulosSideBar titulo = 'Vendedor'/>
 
                     <ul className="nav flex-column">
+                      
                       <li className="nav-item px-3">
-                        <Link to='/resumenVentas' className="nav-link text-reset dropdown-item" aria-current="page"> Resumen de ventas </Link>
+                        <Link to='/ventas' className="nav-link text-reset dropdown-item" aria-current="page"> Ventas </Link>
                       </li>
+                      
                       <li className="nav-item px-3">
-                        <Link to='/registroVentas' className="nav-link text-reset dropdown-item" aria-current="page" > Registro de venta </Link>
+                        <span className="nav-link disabled dropdown-item" aria-current="page" > Estado de venta </span>
                       </li>
-                      <li className="nav-item px-3">
-                        <a className="nav-link disabled dropdown-item" aria-current="page" > Estado de venta </a>
-                      </li>
-                      <li className="nav-item px-3">
-                        <a className="nav-link disabled dropdown-item" aria-current="page" > Clientes</a>
-                      </li>
+
                     </ul>
                                         
                     
@@ -35,11 +32,13 @@ const SideBar = () => {
                       <li className="nav-item px-3">
                        <Link to='/inventario' className="nav-link text-reset dropdown-item" aria-current="page"> Inventario </Link>
                       </li>
+
                       <li className="nav-item px-3">
-                        <a className="nav-link disabled dropdown-item" aria-current="page"> Ingresar productos </a>
-                      </li>                    
+                        <span className="nav-link disabled dropdown-item" aria-current="page" > Clientes </span>
+                      </li>
+
                       <li className="nav-item px-3">
-                        <Link to='/administrarUsuarios' className="nav-link text-reset dropdown-item" aria-current="page"> Administrar Vendedores </Link>
+                        <Link to='/Usuarios' className="nav-link text-reset dropdown-item" aria-current="page"> Usuarios </Link>
                       </li>                  
                     </ul>
                     

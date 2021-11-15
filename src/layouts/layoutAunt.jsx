@@ -1,8 +1,8 @@
 import logo from '../media/Barfut_H-Blanco2.png';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const Header = () => {
-  const { logout } = useAuth0();
+const LayoutAunt = () => {
+  const { loginWithRedirect } = useAuth0();
 
     return (
 
@@ -13,12 +13,11 @@ const Header = () => {
       
         <div className="navbar-nav">
           <div className="btn-group btn-group-sm fs-6 border-0">
-            
-            <button onClick={() => logout({ returnTo: window.location.origin })}>Cerrar sesión</button>            
+            <button className="btn btn-success m-1 rounded-pill" onClick={() => loginWithRedirect()}>Iniciar sesión</button>
           </div>
         </div>
       </header>
   );
 }
 
-export default Header;
+export default LayoutAunt;

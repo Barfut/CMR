@@ -1,34 +1,41 @@
-import Login from './pages/login';
 import Principal from './pages/principal';
-import ResumenVentas from './pages/resumenVentas';
-import RegistroVentas from './pages/registroVentas';
+import Ventas from './pages/ventas';
 import Inventario from './pages/inventario';
-import AdministrarUsuarios from './pages/administrarUsuarios';
+import Usuarios from './pages/usuarios';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import './styles/App.css';
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
+import './styles/App.css';
+import { Auth0Provider } from '@auth0/auth0-react';
+import LayoutAunt from './layouts/layoutAunt'
+import Login from './pages/login'
+import Layaut from './layouts/layaut';
 
 function App() {
   return ( 
 
-    <div className='App'>
-
-      <BrowserRouter>
-        <Routes>
-          <Route exact path= "/" element ={<Login/>} /> 
-          <Route exact path= "/login" element ={<Login/>} /> 
-          <Route exact path= "/principal" element ={<Principal/>} /> 
-          <Route exact path= "/resumenVentas" element ={<ResumenVentas/>} /> 
-          <Route exact path= "/registroVentas" element ={<RegistroVentas/>} /> 
-          <Route exact path= "/inventario" element ={<Inventario/>} /> 
-          <Route exact path= "/administrarUsuarios" element ={<AdministrarUsuarios/>} />
+    <Auth0Provider
+      domain="barfut-autenticacion.us.auth0.com"
+      clientId="kE45TwgsE9tiKfDOvaNrXkZWsL2Qhpta"
+      redirectUri={window.location.origin}
+    >
+      <div className='App'>
+    
+        <BrowserRouter>
             
-        </Routes>
-      </BrowserRouter>
-
-    </div>
+              <Routes>
+                <Route  exat path ="/" element ={<Login/>} />  
+                <Route  path= "/principal" element ={<Principal/>} /> 
+                <Route  path= "/ventas" element ={<Ventas/>} /> 
+                <Route  path= "/inventario" element ={<Inventario/>} /> 
+                <Route  path= "/usuarios" element ={<Usuarios/>} />        
+              </Routes>
+            
+        </BrowserRouter>
+    
+      </div>
+    </Auth0Provider>
   );
 }
 
