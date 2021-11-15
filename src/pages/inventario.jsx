@@ -6,8 +6,6 @@ import Layaut from '../layouts/layaut';
 import { Dialog, Tooltip } from '@mui/material';
 import {crearProducto, editarInventario, eliminarInventario, obtenerInventario} from '../utils/api';
 
-
-
 function Inventario () {
     const [mostrarTabla, setMostrarTabla] = useState(true);
     const [inventario, setInventario] = useState([]);
@@ -160,17 +158,12 @@ function Inventario () {
         );     
     };
   
-    const eliminarProducto = async () => {
-      const options = {
-        method: 'DELETE',
-        url: `http://localhost:5000/inventario/${inventario._id}/`,
-        headers: { 'Content-Type': 'application/json' },
-      };
-  
+    const eliminarProducto = async () => {  
+      
       await eliminarInventario(
         inventario._id,
         (response) => {
-          toast.success('producto eliminado con éxito');
+          toast.success('Producto eliminado con éxito');
           setEjecutarConsulta(true);
         }, (error) => {
           console.error(error);

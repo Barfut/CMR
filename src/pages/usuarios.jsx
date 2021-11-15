@@ -4,8 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Layaut from '../layouts/layaut';
 import { Dialog, Tooltip } from '@mui/material';
-import axios from 'axios';
-
+import {crearUsuario, editarUsuario, eliminarUsuario, obtenerUsuarios} from '../utils/api';
 
 
 function Usuarios () {
@@ -13,29 +12,30 @@ function Usuarios () {
     const [usuarios, setUsuarios] = useState([]);
     const [textoBoton, setTextoBoton] = useState('Crear un nuevo usuario');
     const [colorBoton, setColorBoton] = useState('indigo');
-    const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
-    
-    
-  
-    const obtenerUsuarios = async () => {
-      const options = { method: 'GET', url: 'http://localhost:5000/usuarios/' };
-      await axios
-        .request(options)
-        .then(function (response) {
-          setUsuarios(response.data);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-      setEjecutarConsulta(false);
-    };
+    const [ejecutarConsulta, setEjecutarConsulta] = useState(true);        
   
     useEffect(() => {
       console.log('consulta', ejecutarConsulta);
       if (ejecutarConsulta) {
-        obtenerUsuarios();
+        obtenerUsuarios(
+          (response) => {
+            setUsuarios(response.data);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+        setEjecutarConsulta(false)
       }
     }, [ejecutarConsulta]);
+  
+    useEffect(() => {
+      //obtener lista de productos desde el backend
+      if (mostrarTabla) {
+        setEjecutarConsulta(true);
+      }
+    }, [mostrarTabla]);
+  
   
     useEffect(() => {
       //obtener lista de usuarios desde el backend
@@ -43,8 +43,7 @@ function Usuarios () {
         setEjecutarConsulta(true);
       }
     }, [mostrarTabla]);
-  
-  
+
   
     useEffect(() => {
       if (mostrarTabla) {
@@ -144,7 +143,7 @@ function Usuarios () {
   };
   
   
-    const FilaUsuario = ({usuarios, setEjecutarConsulta}) => {
+  const FilaUsuario = ({usuarios, setEjecutarConsulta}) => {
     const [edit, setEdit] = useState(false)
     const [openDialog, setOpenDialog] = useState(false);
     const [infoNuevoUsuario, setInfoNuevoUsuario] = useState({
@@ -156,48 +155,33 @@ function Usuarios () {
     });
   
     const actualizarUsuarios = async () => {
-      console.log(infoNuevoUsuario);
-      //enviar la info al backend
-     
-      const options = {
-        method: 'PATCH',
-        url: `http://localhost:5000/usuarios/${usuarios._id}/`,
-        headers: { 'Content-Type': 'application/json' },
-        data: { ...infoNuevoUsuario},
-      };
-  
-      await axios
-        .request(options)
-        .then(function (response) {
-          console.log(response.data);
-          toast.success('usuario modificado con éxito');
+      
+      await editarUsuario(
+        usuarios._id,
+        infoNuevoUsuario,
+        (response) => {
+          toast.success('Usuario modificado con éxito');
           setEdit(false);
           setEjecutarConsulta(true);
-        })
-        .catch(function (error) {
+          },(error) => {
           toast.error('Error modificando el usuario');
           console.error(error);
-        });
+          }
+        );     
     };
   
     const eliminarUsuarios = async () => {
-      const options = {
-        method: 'DELETE',
-        url: `http://localhost:5000/usuarios/${usuarios._id}/`,
-        headers: { 'Content-Type': 'application/json' },
-      };
-  
-      await axios
-        .request(options)
-        .then(function (response) {
-          console.log(response.data);
-          toast.success('usuario eliminado con éxito');
+     
+      await eliminarUsuario(
+        usuarios._id,
+        (response) => {
+          toast.success('Usuario eliminado con éxito');
           setEjecutarConsulta(true);
-        })
-        .catch(function (error) {
+        }, (error) => {
           console.error(error);
           toast.error('Error eliminando el usuario');
-        });
+          }
+        );      
       setOpenDialog(false);
     };
   
@@ -333,32 +317,24 @@ function Usuarios () {
       fd.forEach((value, key) => {
         nuevoUsuario[key] = value;
       });
-  
-      const options = {
-        method: 'POST',
-        url: 'http://localhost:5000/usuarios/',
-        headers: { 'Content-Type': 'application/json' },
-        data: { 
+
+
+      await crearUsuario({ 
           email: nuevoUsuario.email,
           apellido: nuevoUsuario.apellido,
           nombre: nuevoUsuario.nombre,
           roll: nuevoUsuario.roll,       
           estado: nuevoUsuario.estado,
-         },
-      };
-    
-    await axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        toast.success('usuario agregado con éxito');
-      })
-      .catch(function (error) {
-        console.error(error);
-        toast.error('Error creando un usuario');
-      });
-  
-    setMostrarTabla(true);
+       },(response)=> {
+         console.log(response.data);
+         toast.success('Usuario agregado con éxito')
+       },(error) => {
+         console.error(error);
+         toast.error('Error creando un nuevo usuario')
+       }
+      );    
+      
+      setMostrarTabla(true);
     };
   
     return (
