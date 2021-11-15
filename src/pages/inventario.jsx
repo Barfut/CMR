@@ -4,36 +4,29 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Layaut from '../layouts/layaut';
 import { Dialog, Tooltip } from '@mui/material';
-import axios from 'axios';
+import {crearProducto, editarInventario, eliminarInventario, obtenerInventario} from '../utils/api';
 
 
 
 function Inventario () {
     const [mostrarTabla, setMostrarTabla] = useState(true);
-    const [inventario, setInventatio] = useState([]);
+    const [inventario, setInventario] = useState([]);
     const [textoBoton, setTextoBoton] = useState('Crear un nuevo producto');
     const [colorBoton, setColorBoton] = useState('indigo');
-    const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
+    const [ejecutarConsulta, setEjecutarConsulta] = useState(true);      
     
-    
-  
-    const obtenerInventatio = async () => {
-      const options = { method: 'GET', url: 'http://localhost:5000/inventario/' };
-      await axios
-        .request(options)
-        .then(function (response) {
-          setInventatio(response.data);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-      setEjecutarConsulta(false);
-    };
-  
     useEffect(() => {
       console.log('consulta', ejecutarConsulta);
       if (ejecutarConsulta) {
-        obtenerInventatio();
+        obtenerInventario(
+          (response) => {
+            setInventario(response.data);
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
+        setEjecutarConsulta(false)
       }
     }, [ejecutarConsulta]);
   
@@ -57,7 +50,7 @@ function Inventario () {
     }, [mostrarTabla]);
   
   
-    return (
+  return (
       <Layaut>
       <div className='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
         <div className='d-md-flex justify-content-md-end pt-3 pb-2 mb-3 '>
@@ -79,7 +72,7 @@ function Inventario () {
           <FormularioIngresarProducto
             setMostrarTabla={setMostrarTabla}
             listaProductos={inventario}
-            setInventatio={setInventatio}
+            setInventario={setInventario}
           />
         )}
         <ToastContainer position='bottom-center' autoClose={2000} />
@@ -152,28 +145,19 @@ function Inventario () {
     });
   
     const actualizarProductos = async () => {
-      console.log(infoNuevoProducto);
-      //enviar la info al backend
      
-      const options = {
-        method: 'PATCH',
-        url: `http://localhost:5000/inventario/${inventario._id}/`,
-        headers: { 'Content-Type': 'application/json' },
-        data: { ...infoNuevoProducto},
-      };
-  
-      await axios
-        .request(options)
-        .then(function (response) {
-          console.log(response.data);
+      await editarInventario(
+        inventario._id, 
+        infoNuevoProducto,
+        (response) => {
           toast.success('Producto modificado con éxito');
           setEdit(false);
           setEjecutarConsulta(true);
-        })
-        .catch(function (error) {
+          },(error) => {
           toast.error('Error modificando el producto');
           console.error(error);
-        });
+          }
+        );     
     };
   
     const eliminarProducto = async () => {
@@ -183,17 +167,16 @@ function Inventario () {
         headers: { 'Content-Type': 'application/json' },
       };
   
-      await axios
-        .request(options)
-        .then(function (response) {
-          console.log(response.data);
+      await eliminarInventario(
+        inventario._id,
+        (response) => {
           toast.success('producto eliminado con éxito');
           setEjecutarConsulta(true);
-        })
-        .catch(function (error) {
+        }, (error) => {
           console.error(error);
           toast.error('Error eliminando el producto');
-        });
+          }
+        );      
       setOpenDialog(false);
     };
   
@@ -298,7 +281,7 @@ function Inventario () {
     );
   }
   
-  const FormularioIngresarProducto = ({ setMostrarTabla, listaProductos, setInventatio }) => {
+  const FormularioIngresarProducto = ({ setMostrarTabla, listaProductos, setInventario }) => {
     const form = useRef(null);
   
     const submitForm = async (e) => {
@@ -308,29 +291,20 @@ function Inventario () {
       const nuevoProducto = {};
       fd.forEach((value, key) => {
         nuevoProducto[key] = value;
-      });
-  
-      const options = {
-        method: 'POST',
-        url: 'http://localhost:5000/inventario/',
-        headers: { 'Content-Type': 'application/json' },
-        data: { 
-          producto: nuevoProducto.producto,
-          valorUnitario: nuevoProducto.valorUnitario,
-          estado: nuevoProducto.estado,
-         },
-      };
-    
-    await axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-        toast.success('Producto agregado con éxito');
-      })
-      .catch(function (error) {
-        console.error(error);
-        toast.error('Error creando un producto');
-      });
+      });  
+   
+    await crearProducto({ 
+      producto: nuevoProducto.producto,
+      valorUnitario: nuevoProducto.valorUnitario,
+      estado: nuevoProducto.estado,
+     },(response)=> {
+       console.log(response.data);
+       toast.success('Producto agregado con éxito')
+     },(error) => {
+       console.error(error);
+       toast.error('Error creando un nuevo producto')
+     }
+    );
   
     setMostrarTabla(true);
     };
