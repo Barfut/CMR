@@ -7,10 +7,8 @@ import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/App.css';
-import { Auth0Provider } from '@auth0/auth0-react';
-import LayoutAunt from './layouts/layoutAunt'
+import { Auth0Provider} from '@auth0/auth0-react';
 import Login from './pages/login'
-import Layaut from './layouts/layaut';
 
 function App() {
   return ( 
@@ -18,7 +16,9 @@ function App() {
     <Auth0Provider
       domain="barfut-autenticacion.us.auth0.com"
       clientId="kE45TwgsE9tiKfDOvaNrXkZWsL2Qhpta"
-      redirectUri={window.location.origin}
+      redirectUri='http://localhost:3000/principal'
+      audience="api-autenticacion-barfut"
+      scope="read:current_user update:current_user_metadata"
     >
       <div className='App'>
     
