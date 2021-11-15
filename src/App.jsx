@@ -1,4 +1,3 @@
-import Login from './pages/login';
 import Principal from './pages/principal';
 import Ventas from './pages/ventas';
 import Inventario from './pages/inventario';
@@ -8,29 +7,34 @@ import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/App.css';
-
-
+import { Auth0Provider } from '@auth0/auth0-react';
+import LayoutAunt from './layouts/layoutAunt'
+import Login from './pages/login'
 
 function App() {
   return ( 
 
-    <div className='App'>
-   
-    <BrowserRouter>
-      
-          <Routes>
-            <Route  path ="/" element ={<Login/>} />  
-            <Route  path= "/principal" element ={<Principal/>} /> 
-            <Route  path= "/ventas" element ={<Ventas/>} /> 
-            <Route  path= "/inventario" element ={<Inventario/>} /> 
-            <Route  path= "/usuarios" element ={<Usuarios/>} />        
-          </Routes>
-      
-    </BrowserRouter>
- 
-
-
-    </div>
+    <Auth0Provider
+      domain="barfut-autenticacion.us.auth0.com"
+      clientId="kE45TwgsE9tiKfDOvaNrXkZWsL2Qhpta"
+      redirectUri={window.location.origin}
+    >
+      <div className='App'>
+    
+        <BrowserRouter>
+            
+              <Routes>
+                <Route  exat path ="/" element ={<Principal/>} />  
+                <Route  path= "/layoutAunt" element ={<LayoutAunt/>} /> 
+                <Route  path= "/ventas" element ={<Ventas/>} /> 
+                <Route  path= "/inventario" element ={<Inventario/>} /> 
+                <Route  path= "/usuarios" element ={<Usuarios/>} />        
+              </Routes>
+            
+        </BrowserRouter>
+    
+      </div>
+    </Auth0Provider>
   );
 }
 

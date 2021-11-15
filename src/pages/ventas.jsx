@@ -109,16 +109,17 @@ const TablaVentas = ({listaVentas, setEjecutarConsulta}) => {
 
     <div className='table-wrapper-scroll-y my-custom-scrollbar-resumen'>
         <table className="table table-hover table-bordered">
-            <thead className="table-light sticky-top ">
+            <thead className="table-light sticky-top">
               <tr>
-                  <th width="4%">ID</th>
-                  <th width="10%">Fecha</th>
-                  <th width="9%">C.C. cliente</th>
-                  <th width="13%">Cliente</th>
-                  <th width="21%">Producto</th>
-                  <th width="7%" className="text-center">Cantidad</th>
-                  <th width="9%" className="text-center">Valor unitario</th>
-                  <th width="8%" className="text-center">Total</th>
+                  <th width="3%">ID</th>
+                  <th width="15%">Fecha</th>
+                  <th width="8%">C.C. cliente</th>
+                  <th width="10%">Cliente</th>
+                  <th width="20%">Producto</th>
+                  <th width="6%" className="text-center">Cantidad</th>
+                  <th width="5%" className="text-center">Valor unitario</th>
+                  <th width="5%" className="text-center">Total</th>
+                  <th width="10%" className="text-center">Estado</th>
                   <th width="12%" className="text-center">Vendedor</th>
                   <th width="6%" className="text-center">Acciones</th>
               </tr>
@@ -151,12 +152,14 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
     fecha: ventas.fecha,
     cedula: ventas.cedula,
     nombre: ventas.nombre,
-    producto: ventas.producto,
+    producto:  ventas.producto,
     cantidad: ventas.cantidad,
     valorUnitario: ventas.valorUnitario,
-    vendedor: ventas.vendedor,
+    estado: ventas.estado,
+    vendedor: ventas.vendedor
   });
 
+  
   const actualizarVentas = async () => {
     
     await editarVentas(
@@ -243,10 +246,12 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
             <select className='form-select m-0 p-0' 
             value={infoNuevaVenta.producto}
             onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, producto: e.target.value })}
-            >        
-              {inventario.map((el) => {
-                return <option> {el.producto} </option>
-              })}          
+            > 
+            {inventario.map((el) => {
+              return <option 
+              key={nanoid()}
+              /*value={el._id}*/>  {el.producto} </option>
+            })}   
             </select>     
           </td>
           <td>
@@ -256,25 +261,40 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
             />
           </td>
           <td>
-            <select className='form-select m-0 p-0'
+          <select className='form-select m-0 p-0' 
             value={infoNuevaVenta.valorUnitario}
             onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, valorUnitario: e.target.value })}
-            >
-            <option disabled value={0}> Seleccione una opción</option>                    
-              {inventario.map((el) => {
-                return <option> {el.valorUnitario} </option>
-              })} 
-            </select>
+            > 
+            {inventario.map((el) => {
+              return <option 
+              key={nanoid()}
+              /*value={el._id}*/>  {el.valorUnitario} </option>
+            })}   
+            </select> 
           </td>
-          <td className="text-center">{`  $ ${parseInt(ventas.cantidad) * parseInt(ventas.valorUnitario)} `} </td>
+          <td className="text-center">{`$${parseInt(ventas.cantidad) * parseInt(ventas.valorUnitario)}`} </td>
+          <td>               
+              <select className='form-select m-0 p-0' 
+                  value={infoNuevaVenta.estado}
+                  onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, estado: e.target.value })}
+                  >
+                  <option>En proceso</option>        
+                  <option>Cancelada</option>
+                  <option>Entregada</option> 
+              </select>                  
+          </td>           
           <td>               
               <select className='form-select m-0 p-0' 
                 value={infoNuevaVenta.vendedor}
                 onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, vendedor: e.target.value })}
                 >        
                 {usuarios.map((el) => {
-                  return <option> {`${el.apellido} ${el.nombre} `} </option>
-                })}  
+                  return <option 
+                    key={nanoid()} 
+                    /*value={el._id}*/> 
+                    {`${el.apellido} ${el.nombre} `} </option>
+                })}
+                
               </select>                  
           </td> 
         </>
@@ -286,8 +306,9 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
         <td>{ventas.nombre}</td>
         <td>{ventas.producto}</td>
         <td className="text-center">{ventas.cantidad}</td>
-        <td className="text-center">{`  $ ${ventas.valorUnitario}`}</td>
-        <td className="text-center">{`  $ ${parseInt(ventas.cantidad) * parseInt(ventas.valorUnitario)} `} </td>      
+        <td className="text-center">{`$${ventas.valorUnitario}`}</td>
+        <td className="text-center">{`$${parseInt(ventas.cantidad) * parseInt(ventas.valorUnitario)}`} </td>      
+        <td className="text-center">{ventas.estado}</td>  
         <td className="text-center">{ventas.vendedor}</td>  
         </>
       )}
@@ -356,7 +377,11 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
 }
 
 const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) => {
+  
   const form = useRef(null);
+
+  const [usuarios, setUsuarios] = useState([]);
+  const [inventario, setInventario] = useState([]);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -366,15 +391,18 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
     fd.forEach((value, key) => {
       nuevaVenta[key] = value;
     });
-
+console.log(nuevaVenta)
     await crearVentas({ 
       fecha: nuevaVenta.fecha,
       cedula: nuevaVenta.cedula,
       nombre: nuevaVenta.nombre,
       producto: nuevaVenta.producto,
+      //producto: inventario.filter((v) => v._id === nuevaVenta.producto)[0],
       cantidad: nuevaVenta.cantidad,
       valorUnitario: nuevaVenta.valorUnitario,
-      vendedor: nuevaVenta.vendedor
+      estado: nuevaVenta.estado,
+      vendedor: nuevaVenta.vendedor,
+      //vendedor: usuarios.filter((v) => v._id === nuevaVenta.vendedor)[0]
     },(response)=> {
       console.log(response.data);
       toast.success('Venta agregada con éxito')
@@ -383,12 +411,9 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
       toast.error('Error creando una nueva venta')
     }
   );        
-
+    
   setMostrarTabla(true);
   };
-
-  const [usuarios, setUsuarios] = useState([]);
-  const [inventario, setInventario] = useState([]);
 
   useEffect(() => {  
     const obtenerUsuario = async () => {
@@ -431,7 +456,10 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
                      >
                         <option disabled value={0}> Seleccione una opción</option>
                         {usuarios.map((el) => {
-                          return <option> {`${el.apellido} ${el.nombre} `} </option>
+                          return <option 
+                            key={nanoid()} 
+                            /*value={el._id}*/> 
+                            {`${el.apellido} ${el.nombre} `} </option>
                         })}                    
                                                   
                     </select>                  
@@ -492,12 +520,13 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
                      >
                         <option disabled value={0}> Seleccione una opción</option>                    
                         {inventario.map((el) => {
-                          return <option> {el.producto} </option>
+                          return <option 
+                          key={nanoid()}
+                          /*value={el._id}*/>  {el.producto} </option>
                         })}                      
                     </select>                  
                     </label>
                 
-
                     <label className='align-middle d-flex w-100 py-3' htmlFor='cantidad'>
                     Cantidad
                     <input
@@ -509,20 +538,32 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
                         placeholder='...'
                         required
                     />
-                    </label>
+                    </label>                                    
 
                     <label className='align-middle d-flex w-100 py-3' htmlFor='valorUnitario'>
                     Und valor
                     <select
                         className='text-muted form-select ms-5 w-75'
-                        name='producto'
+                        name='valorUnitario'
                         required
                         defaultValue={0}
                       >
                       <option disabled value={0}> Seleccione una opción</option>                    
                       {inventario.map((el) => {
-                        return <option> {el.valorUnitario} </option>
+                        return <option key={nanoid()}> {el.valorUnitario} </option>
                       })} 
+                    </select>     
+                    </label>
+
+                    <label className='align-middle d-flex w-100 py-3' htmlFor='estadp'>
+                    <div className='pe-1 me-3'> Estado</div>
+                    <select
+                        className='text-muted form-select ms-5 w-75'
+                        name='estado'
+                        required                        
+                      >
+                      <option disabled value={0}> Seleccione una opción</option>                    
+                      <option>En proceso</option>                      
                     </select>     
                     </label>
                     

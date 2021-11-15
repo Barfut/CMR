@@ -207,7 +207,7 @@ function Inventario () {
         ): (
           <>           
           <td>{inventario.producto}</td>
-          <td className="text-center">{`  $ ${inventario.valorUnitario}`}</td>        
+          <td className="text-center">{`  $${inventario.valorUnitario}`}</td>        
           <td className="text-center">{inventario.estado}</td>
           </>
         )}
