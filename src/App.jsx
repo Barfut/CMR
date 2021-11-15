@@ -10,6 +10,7 @@ import './styles/App.css';
 import { Auth0Provider } from '@auth0/auth0-react';
 import LayoutAunt from './layouts/layoutAunt'
 import Login from './pages/login'
+import Layaut from './layouts/layaut';
 
 function App() {
   return ( 
@@ -24,8 +25,8 @@ function App() {
         <BrowserRouter>
             
               <Routes>
-                <Route  exat path ="/" element ={<Principal/>} />  
-                <Route  path= "/layoutAunt" element ={<LayoutAunt/>} /> 
+                <Route  exat path ="/" element ={<Login/>} />  
+                <Route  path= "/principal" element ={<Principal/>} /> 
                 <Route  path= "/ventas" element ={<Ventas/>} /> 
                 <Route  path= "/inventario" element ={<Inventario/>} /> 
                 <Route  path= "/usuarios" element ={<Usuarios/>} />        

@@ -9,13 +9,13 @@ import PrivateRoute from '../components/privateRoute';
 
 function Layaut ({children}) {
     return (
-  
+        <PrivateRoute>
         <div className = 'maincontainer'>
 
         <Header/>
        
             <div className="container-fluid">
-            <PrivateRoute>
+            
                  <div className="row">
                  
                     <SideBar />
@@ -23,11 +23,11 @@ function Layaut ({children}) {
                     <div>{children}</div>
                     
                 </div>
-            </PrivateRoute>    
+               
             </div>              
            
         </div>   
-    
+        </PrivateRoute> 
 
    );
 }

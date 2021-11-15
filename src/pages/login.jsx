@@ -1,10 +1,13 @@
 import logo from '../media/Barfut_H-Blanco.png';
 import '../styles/App.css';
 import 'bootstrap/dist/css/bootstrap.css';
+import { useAuth0 } from '@auth0/auth0-react';
 import { Link } from 'react-router-dom';
 
 
 function Login() {
+
+  const { loginWithRedirect } = useAuth0();
   return ( /* arreglar las a de link y autenticacion con google*/
   
     <div className="text-center">
@@ -38,10 +41,7 @@ function Login() {
 
                   <br />
                   <div className="mb-3 mb-0 text-center">
-                    <Link to='/principal'>
-                      <button type="submit"
-                       className="btn btn-success">Iniciar sesión</button>
-                    </Link>
+                    <button className="btn btn-success m-1 rounded-pill" onClick={() => loginWithRedirect()}>Iniciar sesión</button>
                   </div> 
                   
                 </form>
