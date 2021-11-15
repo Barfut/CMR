@@ -4,7 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Layaut from '../layouts/layaut';
 import { Dialog, Tooltip } from '@mui/material';
-import { crearVentas, editarVentas, eliminarVentas, obtenerVenta } from '../utils/api';
+import { crearVentas, editarVentas, eliminarVentas, obtenerVenta , obtenerUsuarios, obtenerInventario} from '../utils/api';
 
 
 const Ventas = () => {
@@ -13,17 +13,15 @@ const Ventas = () => {
   const [textoBoton, setTextoBoton] = useState('Crear nuevo venta');
   const [colorBoton, setColorBoton] = useState('indigo');
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
-  
-  
 
   const obtenerVentas = async () => {
     
     await obtenerVenta(
       (response) => {
         setVentas(response.data);
-      }) .catch((error) => {
+      },(error) => {
         console.error(error);
-      });
+      }); 
     setEjecutarConsulta(false);
   };
 
@@ -40,7 +38,6 @@ const Ventas = () => {
       setEjecutarConsulta(true);
     }
   }, [mostrarTabla]);
-
 
 
   useEffect(() => {
@@ -145,6 +142,9 @@ const TablaVentas = ({listaVentas, setEjecutarConsulta}) => {
 
 
 const FilaVenta = ({ventas, setEjecutarConsulta}) => {
+  
+  const [usuarios, setUsuarios] = useState([]);
+  const [inventario, setInventario] = useState([]);
   const [edit, setEdit] = useState(false)
   const [openDialog, setOpenDialog] = useState(false);
   const [infoNuevaVenta, setInfoNuevaVenta] = useState({
@@ -189,6 +189,28 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
     setOpenDialog(false);
   };
 
+  useEffect(() => {  
+    const obtenerUsuario = async () => {
+      await obtenerUsuarios(
+        (response) => {
+          setUsuarios(response.data);
+        },(error) => {
+          console.error(error);
+        });
+      }
+
+    const obtenerProductos = async () => {
+      await obtenerInventario(
+        (response) => {
+          setInventario(response.data);
+        },(error) => {
+          console.error(error);
+        });
+      }
+    obtenerProductos();
+    obtenerUsuario();
+    }, [])
+
 
   return (
 
@@ -222,16 +244,9 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
             value={infoNuevaVenta.producto}
             onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, producto: e.target.value })}
             >        
-              <option>Alimento Barf / Pollo - 250 gr</option>
-              <option>Alimento Barf / Pollo - 500 gr</option>
-              <option>Alimento Barf / Mixta - 250 gr</option>
-              <option>Alimento Barf / Mixta - 500 gr</option>
-              <option>Alimento Barf / Hueso carnoso - 250 gr</option>
-              <option>Alimento Barf / Hueso carnoso - 500 gr</option>
-              <option>Snacks / Galletas de higado X 5 und</option>
-              <option>Snacks / Cabano de res x 10 und</option>
-              <option>Snacks / Traquea de res</option>
-              <option>Snacks / Hueso de res</option>         
+              {inventario.map((el) => {
+                return <option> {el.producto} </option>
+              })}          
             </select>     
           </td>
           <td>
@@ -241,19 +256,25 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
             />
           </td>
           <td>
-            <input min={1000} max={50000} className='form-control text-center m-0 p-0'
+            <select className='form-select m-0 p-0'
             value={infoNuevaVenta.valorUnitario}
             onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, valorUnitario: e.target.value })}
-            />
+            >
+            <option disabled value={0}> Seleccione una opción</option>                    
+              {inventario.map((el) => {
+                return <option> {el.valorUnitario} </option>
+              })} 
+            </select>
           </td>
           <td className="text-center">{`  $ ${parseInt(ventas.cantidad) * parseInt(ventas.valorUnitario)} `} </td>
           <td>               
               <select className='form-select m-0 p-0' 
-                  value={infoNuevaVenta.vendedor}
-                  onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, vendedor: e.target.value })}
-                  >        
-                  <option>Administrador</option>
-                  <option>Vendedor</option> 
+                value={infoNuevaVenta.vendedor}
+                onChange={(e) => setInfoNuevaVenta({ ...infoNuevaVenta, vendedor: e.target.value })}
+                >        
+                {usuarios.map((el) => {
+                  return <option> {`${el.apellido} ${el.nombre} `} </option>
+                })}  
               </select>                  
           </td> 
         </>
@@ -366,6 +387,31 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
   setMostrarTabla(true);
   };
 
+  const [usuarios, setUsuarios] = useState([]);
+  const [inventario, setInventario] = useState([]);
+
+  useEffect(() => {  
+    const obtenerUsuario = async () => {
+      await obtenerUsuarios(
+        (response) => {
+          setUsuarios(response.data);
+        },(error) => {
+          console.error(error);
+        });
+      }
+
+    const obtenerProductos = async () => {
+      await obtenerInventario(
+        (response) => {
+          setInventario(response.data);
+        },(error) => {
+          console.error(error);
+        });
+      }
+    obtenerProductos();
+    obtenerUsuario();
+    }, [])
+
   return (
 
     <>
@@ -383,8 +429,11 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
                         required
                         defaultValue={0}
                      >
-                        <option disabled value={0}> Seleccione una opción</option>                    
-                        <option>Alimento Barf / Pollo - 250 gr</option>                        
+                        <option disabled value={0}> Seleccione una opción</option>
+                        {usuarios.map((el) => {
+                          return <option> {`${el.apellido} ${el.nombre} `} </option>
+                        })}                    
+                                                  
                     </select>                  
                     </label>
                 </div>
@@ -442,16 +491,9 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
                         defaultValue={0}
                      >
                         <option disabled value={0}> Seleccione una opción</option>                    
-                        <option>Alimento Barf / Pollo - 250 gr</option>
-                        <option>Alimento Barf / Pollo - 500 gr</option>
-                        <option>Alimento Barf / Mixta - 250 gr</option>
-                        <option>Alimento Barf / Mixta - 500 gr</option>
-                        <option>Alimento Barf / Hueso carnoso - 250 gr</option>
-                        <option>Alimento Barf / Hueso carnoso - 500 gr</option>                        
-                        <option>Snacks / Galletas de higado X 5 und</option>
-                        <option>Snacks / Cabano de res x 10 und</option>
-                        <option>Snacks / Traquea de res</option>
-                        <option>Snacks / Hueso de res</option>                      
+                        {inventario.map((el) => {
+                          return <option> {el.producto} </option>
+                        })}                      
                     </select>                  
                     </label>
                 
@@ -471,15 +513,17 @@ const FormularioIngresarVenta = ({ setMostrarTabla, listaVentas, setVentas }) =>
 
                     <label className='align-middle d-flex w-100 py-3' htmlFor='valorUnitario'>
                     Und valor
-                    <input
-                        name='valorUnitario'
-                        className='text-muted form-control ms-5 w-75'
-                        type='number'
-                        min={1000}
-                        max={50000}
-                        placeholder='...'
+                    <select
+                        className='text-muted form-select ms-5 w-75'
+                        name='producto'
                         required
-                    />
+                        defaultValue={0}
+                      >
+                      <option disabled value={0}> Seleccione una opción</option>                    
+                      {inventario.map((el) => {
+                        return <option> {el.valorUnitario} </option>
+                      })} 
+                    </select>     
                     </label>
                     
                     <div className='container py-5'> 

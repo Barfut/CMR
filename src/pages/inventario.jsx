@@ -13,18 +13,21 @@ function Inventario () {
     const [colorBoton, setColorBoton] = useState('indigo');
     const [ejecutarConsulta, setEjecutarConsulta] = useState(true);      
     
+    const obtenerProductosInventario = async () => {
+    
+      await obtenerInventario(
+        (response) => {
+          setInventario(response.data);
+        },(error) => {
+          console.error(error);
+        });
+      setEjecutarConsulta(false);
+    };
+  
     useEffect(() => {
       console.log('consulta', ejecutarConsulta);
       if (ejecutarConsulta) {
-        obtenerInventario(
-          (response) => {
-            setInventario(response.data);
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-        setEjecutarConsulta(false)
+        obtenerProductosInventario();
       }
     }, [ejecutarConsulta]);
   
@@ -34,8 +37,6 @@ function Inventario () {
         setEjecutarConsulta(true);
       }
     }, [mostrarTabla]);
-  
-  
   
     useEffect(() => {
       if (mostrarTabla) {

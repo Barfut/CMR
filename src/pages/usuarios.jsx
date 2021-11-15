@@ -7,34 +7,31 @@ import { Dialog, Tooltip } from '@mui/material';
 import {crearUsuario, editarUsuario, eliminarUsuario, obtenerUsuarios} from '../utils/api';
 
 
-function Usuarios () {
+const Usuarios = () => {
     const [mostrarTabla, setMostrarTabla] = useState(true);
     const [usuarios, setUsuarios] = useState([]);
     const [textoBoton, setTextoBoton] = useState('Crear un nuevo usuario');
     const [colorBoton, setColorBoton] = useState('indigo');
     const [ejecutarConsulta, setEjecutarConsulta] = useState(true);        
   
-    useEffect(() => {
-      console.log('consulta', ejecutarConsulta);
-      if (ejecutarConsulta) {
-        obtenerUsuarios(
-          (response) => {
-            setUsuarios(response.data);
-          },
-          (error) => {
-            console.error(error);
-          }
-        );
-        setEjecutarConsulta(false)
-      }
-    }, [ejecutarConsulta]);
+   
+  const obtenerUsuario = async () => {
+    
+    await obtenerUsuarios(
+      (response) => {
+        setUsuarios(response.data);
+      },(error) => {
+        console.error(error);
+      });
+    setEjecutarConsulta(false);
+  };
   
-    useEffect(() => {
-      //obtener lista de productos desde el backend
-      if (mostrarTabla) {
-        setEjecutarConsulta(true);
-      }
-    }, [mostrarTabla]);
+  useEffect(() => {
+    console.log('consulta', ejecutarConsulta);
+    if (ejecutarConsulta) {
+      obtenerUsuario();
+    }
+  }, [ejecutarConsulta]);
   
   
     useEffect(() => {
