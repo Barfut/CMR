@@ -9,7 +9,7 @@ const getToken = () => {
 export const obtenerInventario = async (successCallback, errorCallback) => {
   const options = { 
       method: 'GET', 
-      url: 'http://localhost:5000/inventario/',
+      url: 'https://mysterious-sierra-55098.herokuapp.com/inventario/',
       headers: {Authorization: getToken()} }
   await axios
     .request(options)
@@ -20,7 +20,7 @@ export const obtenerInventario = async (successCallback, errorCallback) => {
 export const crearProducto = async (data, successCallback, errorCallback)  => {
     const options = {
         method: 'POST',
-        url: 'http://localhost:5000/inventario/',
+        url: 'https://mysterious-sierra-55098.herokuapp.com/inventario/',
         headers: { 'Content-Type': 'application/json',Authorization: getToken() },
         data,
       };
@@ -34,7 +34,7 @@ export const crearProducto = async (data, successCallback, errorCallback)  => {
 export const editarInventario = async (id, data, successCallback, errorCallback) => {
     const options = {
         method: 'PATCH',
-        url: `http://localhost:5000/inventario/${id}/`,
+        url: `https://mysterious-sierra-55098.herokuapp.com/inventario/${id}/`,
         headers: { 'Content-Type': 'application/json',Authorization: getToken() },
         data,
       };
@@ -47,7 +47,7 @@ export const editarInventario = async (id, data, successCallback, errorCallback)
 export const eliminarInventario = async (id, successCallback, errorCallback) => {
     const options = {
         method: 'DELETE',
-        url: `http://localhost:5000/inventario/${id}/`,
+        url: `https://mysterious-sierra-55098.herokuapp.com/inventario/${id}/`,
         headers: { 'Content-Type': 'application/json' ,Authorization: getToken()},
         };
     await axios
@@ -62,7 +62,7 @@ export const eliminarInventario = async (id, successCallback, errorCallback) => 
 export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
     const options = {
       method: 'GET',
-      url: 'http://localhost:5000/usuarios/self',
+      url: 'https://mysterious-sierra-55098.herokuapp.com/usuarios/self',
       headers: {
         Authorization: getToken(), // 3. enviarle el token a backend
       },
@@ -74,7 +74,7 @@ export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
 export const obtenerUsuarios = async (successCallback, errorCallback) => {
     const options = { 
         method: 'GET', 
-        url: 'http://localhost:5000/usuarios/',
+        url: 'https://mysterious-sierra-55098.herokuapp.com/usuarios/',
         headers: {Authorization: getToken()} }
     await axios
         .request(options)
@@ -87,7 +87,7 @@ export const obtenerUsuarios = async (successCallback, errorCallback) => {
 export const crearUsuario = async (data, successCallback, errorCallback)  => {
     const options = {
         method: 'POST',
-        url: 'http://localhost:5000/usuarios/',
+        url: 'https://mysterious-sierra-55098.herokuapp.com/usuarios/',
         headers: { 'Content-Type': 'application/json',Authorization: getToken() },
         data,
     };
@@ -101,7 +101,7 @@ export const crearUsuario = async (data, successCallback, errorCallback)  => {
 export const editarUsuario = async (id, data, successCallback, errorCallback) => {
     const options = {
         method: 'PATCH',
-        url: `http://localhost:5000/usuarios/${id}/`,
+        url: `https://mysterious-sierra-55098.herokuapp.com/usuarios/${id}/`,
         headers: { 'Content-Type': 'application/json' ,Authorization: getToken()},
         data,
     };
@@ -114,7 +114,7 @@ export const editarUsuario = async (id, data, successCallback, errorCallback) =>
 export const eliminarUsuario = async (id, successCallback, errorCallback) => {
     const options = {
         method: 'DELETE',
-        url: `http://localhost:5000/usuarios/${id}/`,
+        url: `https://mysterious-sierra-55098.herokuapp.com/usuarios/${id}/`,
         headers: { 'Content-Type': 'application/json',Authorization: getToken() },
     };
     await axios
@@ -128,7 +128,7 @@ export const eliminarUsuario = async (id, successCallback, errorCallback) => {
 export const obtenerVenta = async (successCallback, errorCallback) => {
     const options = { 
         method: 'GET', 
-        url: 'http://localhost:5000/ventas/',
+        url: 'https://mysterious-sierra-55098.herokuapp.com/ventas/',
         headers: {Authorization: getToken()} }
     await axios
         .request(options)
@@ -139,7 +139,7 @@ export const obtenerVenta = async (successCallback, errorCallback) => {
 export const crearVentas = async (data, successCallback, errorCallback)  => {
     const options = {
         method: 'POST',
-        url: 'http://localhost:5000/ventas/',
+        url: 'https://mysterious-sierra-55098.herokuapp.com/ventas/',
         headers: { 'Content-Type': 'application/json',Authorization: getToken() },
         data,
     };
@@ -153,7 +153,7 @@ export const crearVentas = async (data, successCallback, errorCallback)  => {
 export const editarVentas = async (id, data, successCallback, errorCallback) => {
     const options = {
         method: 'PATCH',
-        url: `http://localhost:5000/ventas/${id}/`,
+        url: `https://mysterious-sierra-55098.herokuapp.com/ventas/${id}/`,
         headers: { 'Content-Type': 'application/json',Authorization: getToken() },
         data,
     };
@@ -166,7 +166,7 @@ export const editarVentas = async (id, data, successCallback, errorCallback) => 
 export const eliminarVentas = async (id, successCallback, errorCallback) => {
     const options = {
         method: 'DELETE',
-        url: `http://localhost:5000/ventas/${id}/`,
+        url: `https://mysterious-sierra-55098.herokuapp.com/ventas/${id}/`,
         headers: { 'Content-Type': 'application/json',Authorization: getToken() },
     };
     await axios
