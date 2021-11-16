@@ -7,7 +7,7 @@ const SideBar = () => {
   const { logout } = useAuth0();
 
   const cerrarSesion = () => {
-    logout({ returnTo: 'http://localhost:3000/principal' });
+    logout({ returnTo: 'https://nameless-falls-53282.herokuapp.com/principal' });
     localStorage.setItem('token', null);
   };
 

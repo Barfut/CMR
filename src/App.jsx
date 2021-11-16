@@ -21,7 +21,7 @@ function App() {
     <Auth0Provider
       domain="barfut-autenticacion.us.auth0.com"
       clientId="kE45TwgsE9tiKfDOvaNrXkZWsL2Qhpta"
-      redirectUri='http://localhost:3000/principal'
+      redirectUri='https://nameless-falls-53282.herokuapp.com/principal'
       audience="api-autenticacion-barfut"
       scope="read:current_user update:current_user_metadata"
     >
