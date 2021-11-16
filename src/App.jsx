@@ -8,11 +8,16 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/App.css';
 import { Auth0Provider} from '@auth0/auth0-react';
-import Login from './pages/login'
+import { UserContext } from './context/userContext';
+
+import React, { useState } from 'react';
 
 function App() {
-  return ( 
 
+  const [userData, setUserData] = useState({});
+
+  return ( 
+    
     <Auth0Provider
       domain="barfut-autenticacion.us.auth0.com"
       clientId="kE45TwgsE9tiKfDOvaNrXkZWsL2Qhpta"
@@ -21,11 +26,11 @@ function App() {
       scope="read:current_user update:current_user_metadata"
     >
       <div className='App'>
-    
+      <UserContext.Provider value={{ userData, setUserData }}>
         <BrowserRouter>
             
               <Routes>
-                <Route  exat path ="/" element ={<Login/>} />  
+                <Route  exat path ="/" element ={<Principal/>} />  
                 <Route  path= "/principal" element ={<Principal/>} /> 
                 <Route  path= "/ventas" element ={<Ventas/>} /> 
                 <Route  path= "/inventario" element ={<Inventario/>} /> 
@@ -33,9 +38,10 @@ function App() {
               </Routes>
             
         </BrowserRouter>
-    
+        </UserContext.Provider>
       </div>
     </Auth0Provider>
+    
   );
 }
 

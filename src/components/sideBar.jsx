@@ -36,8 +36,11 @@ const SideBar = () => {
                     
                     <hr className="dropdown-divider" />
                     
+                    
+
                     <TitulosSideBar titulo = 'Administrador'/>
 
+                    
                     <ul className="nav flex-column">
                       <li className="nav-item px-3">
                        <Link to='/inventario' className="nav-link text-reset dropdown-item" aria-current="page"> Inventario </Link>

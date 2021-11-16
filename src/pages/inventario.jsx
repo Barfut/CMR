@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Layaut from '../layouts/layaut';
 import { Dialog, Tooltip } from '@mui/material';
 import {crearProducto, editarInventario, eliminarInventario, obtenerInventario} from '../utils/api';
+import PrivateComponent from '../components/privateComponent';
 
 function Inventario () {
     const [mostrarTabla, setMostrarTabla] = useState(true);
@@ -51,6 +52,7 @@ function Inventario () {
   
   return (
       <Layaut>
+
       <div className='col-md-9 ms-sm-auto col-lg-10 px-md-4'>
         <div className='d-md-flex justify-content-md-end pt-3 pb-2 mb-3 '>
           <div className='btn-group me-2'>
@@ -76,6 +78,7 @@ function Inventario () {
         )}
         <ToastContainer position='bottom-center' autoClose={2000} />
       </div>
+      
       </Layaut>
     );
   };
@@ -104,6 +107,8 @@ function Inventario () {
           className='text-muted form-control w-25 h-50'
         />
       </div>
+
+      
   
       <div className='table-wrapper-scroll-y my-custom-scrollbar-resumen'>
           <table className="table table-hover table-bordered">
@@ -129,6 +134,7 @@ function Inventario () {
               </tbody>
             </table>
         </div>
+        
       </>
     );
   };
@@ -309,6 +315,7 @@ function Inventario () {
         <h2 className='fw-bold d-md-flex justify-content-start pt-3 pb-2 mb-3'>Ingresar nuevo producto</h2>
   
           <div>
+          
               <form ref={form} onSubmit={submitForm} className='row justify-content-md-center'>
   
                   <hr/>
@@ -365,6 +372,7 @@ function Inventario () {
                       </div>
                   </div>
               </form>
+            
           </div>
       </>
     );
