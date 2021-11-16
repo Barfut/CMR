@@ -1,7 +1,17 @@
 import { Link } from 'react-router-dom';
 import '../styles/App.css';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const SideBar = () => {
+
+  const { logout } = useAuth0();
+
+  const cerrarSesion = () => {
+    logout({ returnTo: 'http://localhost:3000/principal' });
+    localStorage.setItem('token', null);
+  };
+
+  
     return (
 
    
@@ -26,8 +36,11 @@ const SideBar = () => {
                     
                     <hr className="dropdown-divider" />
                     
+                    
+
                     <TitulosSideBar titulo = 'Administrador'/>
 
+                    
                     <ul className="nav flex-column">
                       <li className="nav-item px-3">
                        <Link to='/inventario' className="nav-link text-reset dropdown-item" aria-current="page"> Inventario </Link>
@@ -43,6 +56,10 @@ const SideBar = () => {
                     </ul>
                     
                 </div>
+
+                <div className=" text-center position-absolute bottom-0 start-50 translate-middle-x"> 
+                    <button className="btn btn-success m-1 rounded-pill" onClick={() => cerrarSesion()}>Cerrar sesión</button>
+                  </div>  
             </nav>   
     );
 }

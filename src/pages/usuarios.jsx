@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Layaut from '../layouts/layaut';
 import { Dialog, Tooltip } from '@mui/material';
 import {crearUsuario, editarUsuario, eliminarUsuario, obtenerUsuarios} from '../utils/api';
-
+import PrivateComponent from '../components/privateComponent'
 
 const Usuarios = () => {
     const [mostrarTabla, setMostrarTabla] = useState(true);
@@ -108,7 +108,7 @@ const Usuarios = () => {
           className='text-muted form-control w-25 h-50'
         />
       </div>
-  
+      
       <div className='table-wrapper-scroll-y my-custom-scrollbar-resumen'>
           <table className="table table-hover table-bordered">
               <thead className="table-light sticky-top ">
@@ -135,6 +135,7 @@ const Usuarios = () => {
               </tbody>
             </table>
         </div>
+        
       </>
     );
   };
@@ -340,6 +341,7 @@ const Usuarios = () => {
         <h2 className='fw-bold d-md-flex justify-content-start pt-3 pb-2 mb-3'>Ingresar nuevo usuario</h2>
   
           <div>
+          
               <form ref={form} onSubmit={submitForm} className='row justify-content-md-center'>
   
                   <hr/>
@@ -419,6 +421,7 @@ const Usuarios = () => {
                       </div>
                   </div>
               </form>
+              
           </div>
       </>
     );

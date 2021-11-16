@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Layaut from '../layouts/layaut';
 import { Dialog, Tooltip } from '@mui/material';
 import { crearVentas, editarVentas, eliminarVentas, obtenerVenta , obtenerUsuarios, obtenerInventario} from '../utils/api';
+import PrivateComponent from '../components/privateComponent'
 
 
 const Ventas = () => {
@@ -314,6 +315,7 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
       )}
 
         <td>
+        
           <div className= 'd-flex justify-content-evenly'>
             {edit ? (
               <>
@@ -370,7 +372,7 @@ const FilaVenta = ({ventas, setEjecutarConsulta}) => {
                 </div>
               </div>
             </Dialog>
-
+          
         </td>
     </tr>
   );
